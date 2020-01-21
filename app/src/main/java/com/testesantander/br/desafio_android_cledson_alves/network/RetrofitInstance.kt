@@ -17,6 +17,5 @@ object RetrofitInstance {
             }
             return retrofit
         }
-}
 
 }
