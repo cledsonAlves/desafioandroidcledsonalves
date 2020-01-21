@@ -7,9 +7,17 @@ import java.util.ArrayList
 
 
 
-class PersonagemResult(
-@field:SerializedName("id")
-var page: Int, @field:SerializedName("name")
-var totalResults: Int, @field:SerializedName("result")
-var personagemResult: ArrayList<Personagem>?
-) : Serializable
+class PersonagemResult{
+
+//    "id":1009165,
+//    "name":"Avengers",
+//"description"
+
+    @SerializedName("id")
+    var id: Int = 0
+    @SerializedName("name")
+    var name: String = ""
+    @SerializedName("description")
+    var description: String = ""
+
+}

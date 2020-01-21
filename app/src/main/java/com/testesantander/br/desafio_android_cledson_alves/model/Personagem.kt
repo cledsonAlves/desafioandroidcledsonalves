@@ -20,4 +20,6 @@ class Personagem :Serializable{
     var status: String = ""
     @SerializedName("etag")
     var etag: String = ""
+    @SerializedName("data")
+    lateinit var data: Data
 }
