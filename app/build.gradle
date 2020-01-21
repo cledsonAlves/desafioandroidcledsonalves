@@ -15,6 +15,10 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "PUBLIC_KEY", "\"e86e63a175b986079bc9dba2b15a6f30\"")
         buildConfigField("String", "PRIVATE_KEY", "\"01bd2435e83b9acc07ff3ff1d3d844425e00a7e6\"")
+        buildConfigField("String", "MD5", "\"e6ee9220d5f822cb6def5965df83bc81\"")
+        buildConfigField("String", "TS", "\"1579608910\"")
+
+
     }
     buildTypes {
         release {
@@ -37,9 +41,6 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
 
-    implementation "com.android.support:design:27.1.1"
-    implementation "com.android.support:recyclerview-v7:27.1.1"
-    implementation "com.android.support:cardview-v7:27.1.1"
 
     implementation 'androidx.room:room-runtime:2.2.3'
     annotationProcessor 'androidx.room:room-compiler:2.2.3'

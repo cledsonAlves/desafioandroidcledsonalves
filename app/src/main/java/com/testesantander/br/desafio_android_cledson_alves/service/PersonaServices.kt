@@ -8,9 +8,12 @@ import retrofit2.http.Query
 
 interface PersonaServices {
     @GET("/v1/public/characters")
-    fun getAllPersonagens(@Query(PUBLIC_KEY) chave: String): Call<PersonagemResult>
+    fun getAllPersonagens(@Query("ts") ts: String, @Query("apikey")apkey:String, @Query("hash")hash:String): Call<PersonagemResult>
 
     @GET("/v1/public/characters/{characterId}/comics")
     fun getAllHQ(@Query("characterId") id: Int,@Query(PUBLIC_KEY) chave: String)
+
+
+
 
 }
