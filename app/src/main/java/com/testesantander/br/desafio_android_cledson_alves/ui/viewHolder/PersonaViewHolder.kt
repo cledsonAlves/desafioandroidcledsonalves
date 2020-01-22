@@ -9,12 +9,12 @@ import kotlinx.android.synthetic.main.layout.view.*
 class PersonaViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
 
-    var test = view.txt
+    var persona_name = view.txt_nome
 
 
 
 
     fun bind(personas: PersonagemResult) {
-        test.text = personas.name
+        persona_name.text = personas.name
     }
 }

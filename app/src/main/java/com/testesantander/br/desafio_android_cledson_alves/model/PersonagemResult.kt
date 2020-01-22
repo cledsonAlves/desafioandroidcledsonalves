@@ -7,7 +7,7 @@ import java.util.ArrayList
 
 
 
-class PersonagemResult{
+class PersonagemResult : Serializable {
 
 //    "id":1009165,
 //    "name":"Avengers",

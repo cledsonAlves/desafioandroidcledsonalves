@@ -1,12 +1,16 @@
-package com.testesantander.br.desafio_android_cledson_alves
+package com.testesantander.br.desafio_android_cledson_alves.ui.activity
 
+import android.app.Dialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
+import android.view.View
 import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.testesantander.br.desafio_android_cledson_alves.BuildConfig
+import com.testesantander.br.desafio_android_cledson_alves.R
 import com.testesantander.br.desafio_android_cledson_alves.model.Personagem
 import com.testesantander.br.desafio_android_cledson_alves.model.PersonagemClickListener
 import com.testesantander.br.desafio_android_cledson_alves.model.PersonagemResult
@@ -14,17 +18,23 @@ import com.testesantander.br.desafio_android_cledson_alves.network.RetrofitInsta
 import com.testesantander.br.desafio_android_cledson_alves.service.PersonaServices
 import com.testesantander.br.desafio_android_cledson_alves.ui.adapter.PersonaAdapter
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.indeterminateProgressDialog
+import org.jetbrains.anko.startActivityForResult
 import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainActivity : AppCompatActivity(), PersonagemClickListener {
-    override fun onClick(personagemResult: PersonagemResult) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+
+
+
+
+
+class MainActivity : AppCompatActivity(){
 
     private lateinit var linearLayoutManager: LinearLayoutManager
+
+    lateinit var progress : Dialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,14 +43,35 @@ class MainActivity : AppCompatActivity(), PersonagemClickListener {
         linearLayoutManager = LinearLayoutManager(this)
         recicler.layoutManager = linearLayoutManager
 
+
+         progress =  indeterminateProgressDialog("Carregando aguarde ... ")
+
         Thread(Runnable {
             getPersonas()
+            runOnUiThread{
+                progress.dismiss()
+            }
+
         }).start()
-
-
     }
 
     private fun getPersonas() {
+
+
+//
+//      /**   TODO MOCK PARA TESTES */
+//        var person =  PersonaAdapter(Util().getPersonagensMock(),
+//            object : PersonagemClickListener {
+//                override fun onClick(personagem: PersonagemResult) {
+//                    startActivity<DetalhePersonaActivity>()
+//
+//                }
+//            })
+//
+//
+//        recicler.adapter = person
+//        /** ttt  remover ^ */
+
         val personaServices = RetrofitInstance.retrofitInstance?.create(PersonaServices::class.java)
         val call = personaServices?.getAllPersonagens(
             BuildConfig.TS,
@@ -50,6 +81,7 @@ class MainActivity : AppCompatActivity(), PersonagemClickListener {
 
         )
 
+
         call?.enqueue(object : Callback<Personagem> {
             override fun onResponse(@NonNull call: Call<Personagem>, @NonNull response: Response<Personagem>) {
                 if (response.isSuccessful) {
@@ -58,27 +90,41 @@ class MainActivity : AppCompatActivity(), PersonagemClickListener {
 
                     recicler.adapter = personaResult?.let {
                         PersonaAdapter(it, object : PersonagemClickListener {
-                            override fun onClick(per: PersonagemResult) {
-                                Log.e("#SUCESS", "Response : " + per.name)
-                               toast(""+ per.name)
+                            override fun onClick(personagem: PersonagemResult) {
+//
+                                val bundle = Bundle()
+                                bundle.putSerializable("personagem", personagem)
+
+                                val intent = Intent(this@MainActivity, DetalhePersonaActivity::class.java)
+                                intent.putExtras(bundle)
+                                startActivityForResult(intent, 1)
+
                             }
                         })
                     }
-                    Log.e("#SUCESS", "Response : " + personaResult?.size)
-                } else {
+
+                    } else {
                     Log.e("#NotSucces", "Response : " + response.message())
                 }
-
             }
 
             override fun onFailure(@NonNull call: Call<Personagem>, @NonNull t: Throwable) {
                 Log.e("#Error", "OnFailure :" + t.message)
             }
         })
+
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        // check if the request code is same as what is passed  here it is 2
+        if (requestCode == 2) {
+            val message = data!!.getStringExtra("MESSAGE")
+            toast(""+ message)
+        }
+    }
+
+
 }
 
-private operator fun <VH : RecyclerView.ViewHolder?> RecyclerView.Adapter<VH>?.invoke(personaResult: ArrayList<PersonagemResult>?) {
-
-}
+private operator fun <VH : RecyclerView.ViewHolder?> RecyclerView.Adapter<VH>?.invoke() {}

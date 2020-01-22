@@ -5,6 +5,8 @@ import java.io.Serializable
 
 class Personagem :Serializable{
 
+
+
 //    "code": 200,
 //    "status": "Ok",
 //    "etag": "e52e95f71334d797c3c2d0cf144bcc3e611718db",

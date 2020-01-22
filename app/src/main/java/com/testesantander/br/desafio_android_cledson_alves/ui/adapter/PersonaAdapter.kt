@@ -9,11 +9,10 @@ import com.testesantander.br.desafio_android_cledson_alves.model.PersonagemResul
 import com.testesantander.br.desafio_android_cledson_alves.ui.viewHolder.PersonaViewHolder
 
 
-class PersonaAdapter (var personas: ArrayList<PersonagemResult>,  val personaOnclick : PersonagemClickListener):
+class PersonaAdapter (var personas: ArrayList<PersonagemResult>, private val personaOnclick : PersonagemClickListener):
     RecyclerView.Adapter<PersonaViewHolder> (){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        PersonaViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.layout,parent,false))
-
+        PersonaViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.persona_item_card_view,parent,false))
 
     override fun getItemCount() = personas.size
 
