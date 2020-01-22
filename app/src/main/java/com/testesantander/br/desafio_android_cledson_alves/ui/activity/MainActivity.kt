@@ -9,17 +9,18 @@ import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import com.testesantander.br.desafio_android_cledson_alves.BuildConfig
 import com.testesantander.br.desafio_android_cledson_alves.R
 import com.testesantander.br.desafio_android_cledson_alves.model.Personagem
-import com.testesantander.br.desafio_android_cledson_alves.model.PersonagemClickListener
+import com.testesantander.br.desafio_android_cledson_alves.ui.utils.PersonagemClickListener
 import com.testesantander.br.desafio_android_cledson_alves.model.PersonagemResult
 import com.testesantander.br.desafio_android_cledson_alves.network.RetrofitInstance
 import com.testesantander.br.desafio_android_cledson_alves.service.PersonaServices
 import com.testesantander.br.desafio_android_cledson_alves.ui.adapter.PersonaAdapter
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.persona_item_card_view.*
 import org.jetbrains.anko.indeterminateProgressDialog
-import org.jetbrains.anko.startActivityForResult
 import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
@@ -48,15 +49,17 @@ class MainActivity : AppCompatActivity(){
 
         Thread(Runnable {
             getPersonas()
+
             runOnUiThread{
                 progress.dismiss()
+
             }
+
 
         }).start()
     }
 
     private fun getPersonas() {
-
 
 //
 //      /**   TODO MOCK PARA TESTES */
@@ -77,8 +80,6 @@ class MainActivity : AppCompatActivity(){
             BuildConfig.TS,
             BuildConfig.PUBLIC_KEY,
             BuildConfig.MD5
-
-
         )
 
 
@@ -88,8 +89,10 @@ class MainActivity : AppCompatActivity(){
                     val personas = response.body()
                     val personaResult = personas?.data?.personagemResult
 
+
                     recicler.adapter = personaResult?.let {
-                        PersonaAdapter(it, object : PersonagemClickListener {
+                        PersonaAdapter(it, object :
+                            PersonagemClickListener {
                             override fun onClick(personagem: PersonagemResult) {
 //
                                 val bundle = Bundle()
@@ -124,7 +127,10 @@ class MainActivity : AppCompatActivity(){
         }
     }
 
+    fun loadImage(view: View){
+        Picasso.with(applicationContext).load("http://goo.gl/gEgYUd").into(iv_persona)
+        }
+    }
 
-}
 
 private operator fun <VH : RecyclerView.ViewHolder?> RecyclerView.Adapter<VH>?.invoke() {}

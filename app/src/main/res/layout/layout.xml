@@ -27,7 +27,7 @@
             tools:ignore="HardcodedText,MissingConstraints" />
 
         <TextView
-            android:id="@+id/txt_nome"
+            android:id="@+id/txt_nome_hq"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="PERSONAGEM AVATAR"
@@ -36,7 +36,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/txt_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="PREÇO : R$ 54,90"

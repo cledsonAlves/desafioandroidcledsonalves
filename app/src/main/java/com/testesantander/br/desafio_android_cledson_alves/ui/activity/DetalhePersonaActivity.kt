@@ -1,73 +1,91 @@
 package com.testesantander.br.desafio_android_cledson_alves.ui.activity
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatActivity
-import com.testesantander.br.desafio_android_cledson_alves.BuildConfig
 import com.testesantander.br.desafio_android_cledson_alves.BuildConfig.*
 import com.testesantander.br.desafio_android_cledson_alves.R
+import com.testesantander.br.desafio_android_cledson_alves.model.HQ
 import com.testesantander.br.desafio_android_cledson_alves.model.Personagem
-import com.testesantander.br.desafio_android_cledson_alves.model.PersonagemClickListener
 import com.testesantander.br.desafio_android_cledson_alves.model.PersonagemResult
+import com.testesantander.br.desafio_android_cledson_alves.model.Prices
 import com.testesantander.br.desafio_android_cledson_alves.network.RetrofitInstance
 import com.testesantander.br.desafio_android_cledson_alves.service.PersonaServices
-import com.testesantander.br.desafio_android_cledson_alves.ui.adapter.PersonaAdapter
 import kotlinx.android.synthetic.main.activity_detalhe_persona.*
-import kotlinx.android.synthetic.main.activity_main.*
-import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.security.PublicKey
+import kotlin.math.max
 
 
-class DetalhePersonaActivity : AppCompatActivity(){
+class DetalhePersonaActivity : AppCompatActivity() {
+    private lateinit var personagemHQ: PersonagemResult
+    lateinit var listPrices:Prices
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detalhe_persona)
         initComponts()
-        btn_visualizar.setOnClickListener {
-         //   startActivity<DetalheHQActivity>()
-         //   finish()
-            getPersonas(1)
-        }
+        getPersonas(personagemHQ.id)
+
     }
 
-    fun initComponts(){
+    fun initComponts() {
         val intent = getIntent()
-        val personagem =  getIntent().getSerializableExtra("personagem") as PersonagemResult
+        personagemHQ = getIntent().getSerializableExtra("personagem") as PersonagemResult
 
         if (intent != null) {
             val params = intent!!.getExtras()
             if (params != null) {
-                txt_nome.text = personagem.name
-                txt_descricao.text = personagem.description
-                toast("id"+ personagem.id)
+                txt_nome.text = personagemHQ.name
+                txt_descricao.text = personagemHQ.description
+
             }
         }
     }
 
-    private fun getPersonas(id:Int) {
+    private fun getPersonas(id: Int) {
         val personaServices = RetrofitInstance.retrofitInstance?.create(PersonaServices::class.java)
-
-        val call = personaServices?.getAllHQ(TS, PUBLIC_KEY, MD5)
-
+        val call = personaServices?.getAllHQ(id, TS, PUBLIC_KEY, MD5)
 
 
-        call?.enqueue(object : Callback<Personagem> {
-            override fun onResponse(@NonNull call: Call<Personagem>, @NonNull response: Response<Personagem>) {
+
+        call?.enqueue(object : Callback<HQ> {
+            override fun onResponse(@NonNull call: Call<HQ>, @NonNull response: Response<HQ>) {
                 if (response.isSuccessful) {
-                    Log.e("#Succes", "Response : " + response.body())
+                    val hq = response.body()
+                    val results = hq?.data?.hqResult
+
+                    var listPrices = ArrayList<Prices>()
+
+                    for (it in 0 until results?.size!!){
+                        for (x in 0 until results[it].price.size){
+                            listPrices.add(results[it].price[x])
+                        }
+
+                    }
+
+                    personagemHQ.price = listPrices
+                    
+
+                        btn_visualizar.setOnClickListener {
+                        val bundle = Bundle()
+                        bundle.putSerializable("personagem", personagemHQ)
+
+                        val intent =
+                            Intent(this@DetalhePersonaActivity, DetalheHQActivity::class.java)
+                        intent.putExtras(bundle)
+                        startActivityForResult(intent, 1)
+                        finish()
+                    }
                 } else {
                     Log.e("#NotSucces", "Response : " + response.message())
                 }
             }
 
-            override fun onFailure(@NonNull call: Call<Personagem>, @NonNull t: Throwable) {
+            override fun onFailure(@NonNull call: Call<HQ>, @NonNull t: Throwable) {
                 Log.e("#Error", "OnFailure :" + t.message)
             }
         })

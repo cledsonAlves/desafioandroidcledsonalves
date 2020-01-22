@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.testesantander.br.desafio_android_cledson_alves.R
-import com.testesantander.br.desafio_android_cledson_alves.model.PersonagemClickListener
+import com.testesantander.br.desafio_android_cledson_alves.ui.utils.PersonagemClickListener
 import com.testesantander.br.desafio_android_cledson_alves.model.PersonagemResult
 import com.testesantander.br.desafio_android_cledson_alves.ui.viewHolder.PersonaViewHolder
 
