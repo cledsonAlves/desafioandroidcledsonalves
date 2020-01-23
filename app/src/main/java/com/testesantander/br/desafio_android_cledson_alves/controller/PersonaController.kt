@@ -21,7 +21,7 @@ import retrofit2.Response
 
 class PersonaController  {
 
-     fun getPersonas(recyclerView: RecyclerView,context: Context) {
+    private fun getPersonas() {
 
         val personaServices = RetrofitInstance.retrofitInstance?.create(PersonaServices::class.java)
         val call = personaServices?.getAllPersonagens(TS, PUBLIC_KEY, MD5)
@@ -32,23 +32,6 @@ class PersonaController  {
                 if (response.isSuccessful) {
                     val personas = response.body()
                     val personaResult = personas?.data?.personagemResult
-
-
-                    recyclerView.adapter = personaResult?.let {
-                       PersonaAdapter(it, object :
-                           PersonagemClickListener {
-                           override fun onClick(personagem: PersonagemResult) {
-
-//                               val bundle = Bundle()
-//                               bundle.putSerializable("personagem", personagem)
-//                               val intent = Intent(context, DetalhePersonaActivity::class.java)
-//                               intent.putExtras(bundle)
-//                               startActivityForResult(intent, 1)
-
-
-                            }
-                        })
-                   }
 
                 } else {
                     Log.e("#NotSucces", "Response : " + response.message())

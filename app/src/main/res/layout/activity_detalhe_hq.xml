@@ -9,7 +9,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@color/colorPrimaryDark"
         android:padding="8dp">
 
@@ -17,7 +17,7 @@
         <ImageView
             android:id="@+id/iv_persona_hq"
             android:layout_width="200dp"
-            android:layout_height="120dp"
+            android:layout_height="152dp"
             android:background="@android:color/white"
             android:padding="4dp"
             android:src="@drawable/android"
@@ -29,10 +29,12 @@
 
         <TextView
             android:id="@+id/txt_nome_hq"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="99dp"
+            android:layout_height="37dp"
             android:layout_marginTop="8dp"
+            android:ellipsize="end"
             android:text="PERSONAGEM AVATAR"
+            android:maxLines="2"
             android:textColor="@android:color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.357"
@@ -42,8 +44,8 @@
         <TextView
             android:id="@+id/txt_price"
             style="@style/TextAppearance.AppCompat.Caption"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="78dp"
+            android:layout_height="49dp"
             android:text="R$ 54,90"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@android:color/white"
@@ -51,7 +53,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/iv_persona_hq"
-            app:layout_constraintTop_toBottomOf="@+id/txt_nome_hq" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ProgressBar
             android:id="@+id/progressBar_hq"
@@ -62,6 +64,18 @@
             app:layout_constraintEnd_toEndOf="@+id/iv_persona_hq"
             app:layout_constraintStart_toStartOf="@+id/iv_persona_hq"
             app:layout_constraintTop_toTopOf="@+id/iv_persona_hq" />
+
+        <TextView
+            android:id="@+id/txt_descricao_hq"
+            android:layout_width="119dp"
+            android:layout_height="54dp"
+            android:maxLines="3"
+            android:ellipsize="end"
+            android:text="TextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextViewTextView"
+            android:textColor="@android:color/white"
+            app:layout_constraintEnd_toEndOf="@+id/txt_price"
+            app:layout_constraintStart_toStartOf="@+id/txt_price"
+            app:layout_constraintTop_toBottomOf="@+id/txt_price" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
