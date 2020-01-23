@@ -1,5 +1,7 @@
 package com.testesantander.br.desafio_android_cledson_alves.ui.activity
 
+
+
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
@@ -40,23 +42,10 @@ class MainActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         linearLayoutManager = LinearLayoutManager(this)
-        recicler.layoutManager = linearLayoutManager
-
-
-         progress =  indeterminateProgressDialog("Carregando aguarde ... ")
-
-        Thread(Runnable {
-            getPersonas()
-
-            runOnUiThread{
-                progress.dismiss()
-
-            }
-
-
-        }).start()
+        recyclerView.layoutManager = linearLayoutManager
+     //   progress =  indeterminateProgressDialog("Carregando aguarde ... ")
+        getPersonas()
     }
 
     private fun getPersonas() {
@@ -75,6 +64,8 @@ class MainActivity : AppCompatActivity(){
 //        recicler.adapter = person
 //        /** ttt  remover ^ */
 
+
+
         val personaServices = RetrofitInstance.retrofitInstance?.create(PersonaServices::class.java)
         val call = personaServices?.getAllPersonagens(
             BuildConfig.TS,
@@ -90,7 +81,7 @@ class MainActivity : AppCompatActivity(){
                     val personaResult = personas?.data?.personagemResult
 
 
-                    recicler.adapter = personaResult?.let {
+                    recyclerView.adapter = personaResult?.let {
                         PersonaAdapter(it, object :
                             PersonagemClickListener {
                             override fun onClick(personagem: PersonagemResult) {
@@ -106,7 +97,7 @@ class MainActivity : AppCompatActivity(){
                         })
                     }
 
-                    } else {
+                } else {
                     Log.e("#NotSucces", "Response : " + response.message())
                 }
             }
@@ -129,8 +120,57 @@ class MainActivity : AppCompatActivity(){
 
     fun loadImage(view: View){
         Picasso.with(applicationContext).load("http://goo.gl/gEgYUd").into(iv_persona)
-        }
     }
+}
 
 
 private operator fun <VH : RecyclerView.ViewHolder?> RecyclerView.Adapter<VH>?.invoke() {}
+
+//
+//import android.content.Intent
+//import android.os.Build
+//import android.os.Bundle
+//import androidx.annotation.RequiresApi
+//import androidx.appcompat.app.AppCompatActivity
+//import androidx.recyclerview.widget.LinearLayoutManager
+//import com.testesantander.br.desafio_android_cledson_alves.R
+//import com.testesantander.br.desafio_android_cledson_alves.controller.PersonaController
+//import com.testesantander.br.desafio_android_cledson_alves.model.PersonagemResult
+//import com.testesantander.br.desafio_android_cledson_alves.ui.adapter.PersonaAdapter
+//import com.testesantander.br.desafio_android_cledson_alves.ui.utils.PersonagemClickListener
+//import kotlinx.android.synthetic.main.activity_main.*
+
+
+
+
+//class MainActivity : AppCompatActivity() {
+//
+//    private lateinit var linearLayoutManager: LinearLayoutManager
+//
+//    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//        setContentView(R.layout.activity_main)
+//        initComponents()
+//    }
+//
+//    private fun initComponents() {
+//        linearLayoutManager = LinearLayoutManager(this)
+//        recyclerView.layoutManager = linearLayoutManager
+//
+//        var lista = PersonaController().getPersonagens()
+//        recyclerView.adapter = lista?.let {
+//            PersonaAdapter(it,
+//                object : PersonagemClickListener {
+//                    override fun onClick(personagemResult: PersonagemResult) {
+//                        val bundle = Bundle()
+//                        bundle.putSerializable("personagem", personagemResult)
+//                        val intent = Intent(this@MainActivity, DetalhePersonaActivity::class.java)
+//                                intent.putExtras(bundle)
+//                                startActivityForResult(intent, 1)
+//                    }
+//                })
+//        }
+//    }
+//}
+

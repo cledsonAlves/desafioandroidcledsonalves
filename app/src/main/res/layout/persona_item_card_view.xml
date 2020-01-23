@@ -17,29 +17,36 @@
             android:id="@+id/iv_persona"
             android:layout_width="200dp"
             android:layout_height="120dp"
-            android:background="@android:color/white"
-            android:padding="4dp"
-            android:src="@drawable/android"
-            android:textColor="#fff"
-            android:textSize="24sp"
-            app:layout_constraintTop_toBottomOf="@+id/txt_nome"
-            tools:ignore="HardcodedText,MissingConstraints"
-            tools:layout_editor_absoluteX="16dp" />
+            android:src="@drawable/movie_poster"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText,MissingConstraints" />
 
         <TextView
             android:id="@+id/txt_nome"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-
             android:padding="12dp"
             android:text="REVIEW CONTENT"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColor="@color/cardview_dark_background"
+            android:textSize="16dp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_persona"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="HardcodedText"
-            tools:layout_editor_absoluteX="45dp" />
+            tools:ignore="HardcodedText" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_persona"
+            app:layout_constraintEnd_toEndOf="@+id/iv_persona"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/iv_persona"
+            tools:ignore="MissingConstraints" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

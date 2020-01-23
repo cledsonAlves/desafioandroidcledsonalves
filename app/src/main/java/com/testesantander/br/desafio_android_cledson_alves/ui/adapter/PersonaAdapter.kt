@@ -1,5 +1,6 @@
 package com.testesantander.br.desafio_android_cledson_alves.ui.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -18,7 +19,10 @@ class PersonaAdapter (var personas: ArrayList<PersonagemResult>, private val per
 
     override fun onBindViewHolder(holder: PersonaViewHolder, position: Int) {
         holder.bind(personas[position])
-        holder.itemView.setOnClickListener { personaOnclick.onClick(personas[position]) }
+        holder.itemView.setOnClickListener { personaOnclick.onClick(personas[position])
+
+
+        }
 
     }
 

@@ -18,6 +18,12 @@ class PersonagemResult : Serializable {
     @SerializedName("description")
     var description: String = ""
 
+    @SerializedName("modified")
+    var modified: String = ""
+
+    @SerializedName("thumbnail")
+    lateinit var thunbnail: Thumbnail
+
     @SerializedName("urls")
     lateinit var urls: ArrayList<Url>
 
