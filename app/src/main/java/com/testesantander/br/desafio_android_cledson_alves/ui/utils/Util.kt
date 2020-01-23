@@ -10,7 +10,9 @@ import android.widget.ProgressBar
 import androidx.annotation.RequiresApi
 import com.squareup.picasso.Picasso
 import com.testesantander.br.desafio_android_cledson_alves.model.PersonagemResult
+import com.testesantander.br.desafio_android_cledson_alves.model.Prices
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation
+import java.util.function.ToDoubleFunction
 
 
 object Util {
@@ -53,6 +55,13 @@ object Util {
                 }
             })
 
+    }
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    fun getMagazinePrice(lista: java.util.ArrayList<Prices>): Double? {
+        return lista.stream()
+            .mapToDouble{ it.price }
+            .max()
+            .orElse(0.0)
     }
 
 

@@ -12,7 +12,7 @@ class PersonaViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     var persona_name = view.txt_nome
     var iv_persona = view.iv_persona
     var progressBar: ProgressBar = view.progressBar
-    
+
     fun bind(personas: PersonagemResult) {
       val path = "${personas.thunbnail.patch}.${personas.thunbnail.extension}"
         persona_name.text = personas.name

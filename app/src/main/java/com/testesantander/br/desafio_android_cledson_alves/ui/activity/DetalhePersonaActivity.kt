@@ -14,7 +14,9 @@ import com.testesantander.br.desafio_android_cledson_alves.model.PersonagemResul
 import com.testesantander.br.desafio_android_cledson_alves.model.Prices
 import com.testesantander.br.desafio_android_cledson_alves.network.RetrofitInstance
 import com.testesantander.br.desafio_android_cledson_alves.service.PersonaServices
+import com.testesantander.br.desafio_android_cledson_alves.ui.utils.Util
 import kotlinx.android.synthetic.main.activity_detalhe_persona.*
+import kotlinx.android.synthetic.main.activity_detalhe_persona.txt_nome
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -29,7 +31,12 @@ class DetalhePersonaActivity : AppCompatActivity() {
         setContentView(R.layout.activity_detalhe_persona)
         initComponts()
         getPersonas(personagemHQ.id)
-
+        Thread{
+            runOnUiThread{
+                val path = "${personagemHQ.thunbnail.patch}.${personagemHQ.thunbnail.extension}"
+                Util.getPicture(applicationContext,path,iv_persona_detalhe,progressBar_detalhe)
+            }
+        }.start()
     }
 
     fun initComponts() {
