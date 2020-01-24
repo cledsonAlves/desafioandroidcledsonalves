@@ -29,7 +29,7 @@ class DetalheHQActivity : AppCompatActivity() {
                 } else {
                     TODO("VERSION.SDK_INT < N")
                 }
-                txt_price.text = "R$ ${price.toString()}"
+                txt_price.text = "${price}"
                 txt_nome_hq.text = personagem.name
                 txt_descricao_hq.text = personagem.description
 

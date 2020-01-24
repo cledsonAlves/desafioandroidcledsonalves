@@ -18,6 +18,10 @@ android {
         buildConfigField("String", "MD5", "\"e6ee9220d5f822cb6def5965df83bc81\"")
         buildConfigField("String", "TS", "\"1579608910\"")
 
+        testOptions {
+            unitTests.includeAndroidResources = true
+        }
+
 
     }
     buildTypes {
