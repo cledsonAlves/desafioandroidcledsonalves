@@ -1,8 +1,6 @@
 # desafioandroidcledsonalves
 Desefio Android Santander
 
-![Alt text](/relative/path/to/hq.png?raw=true "Optional Title")
-
 
 Cadastre-se de forma gratuita no site: "https://developer.marvel.com/" para ter uma chave pública e privada.
 Atenção na autenticação para consumo das APIs: "https://developer.marvel.com/documentation/authorization".
