@@ -3,9 +3,11 @@ package com.testesantander.br.desafio_android_cledson_alves.ui.activity
 
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.annotation.NonNull
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.testesantander.br.desafio_android_cledson_alves.BuildConfig.*
 import com.testesantander.br.desafio_android_cledson_alves.R
@@ -25,12 +27,14 @@ import retrofit2.Response
 class DetalhePersonaActivity : AppCompatActivity() {
     private lateinit var personagemHQ: PersonagemResult
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detalhe_persona)
         initComponents()
     }
 
+   @RequiresApi(Build.VERSION_CODES.N)
    private fun initComponents() {
         Thread{
             runOnUiThread{
@@ -47,6 +51,7 @@ class DetalhePersonaActivity : AppCompatActivity() {
             val params = intent!!.getExtras()
             if (params != null) {
                 txt_nome.text = personagemHQ.name
+                if (personagemHQ.description.isEmpty()){personagemHQ.description = getString(R.string.msg_description)}
                 txt_descricao.text = personagemHQ.description
 
             }

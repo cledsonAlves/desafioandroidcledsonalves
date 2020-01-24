@@ -31,7 +31,12 @@ class DetalheHQActivity : AppCompatActivity() {
                 }
                 txt_price.text = "${price}"
                 txt_nome_hq.text = personagem.name
+
+                if (personagem.description.isEmpty()){personagem.description = getString(R.string.msg_description)}
                 txt_descricao_hq.text = personagem.description
+
+
+
 
                 val path = "${personagem.thunbnail.patch}.${personagem.thunbnail.extension}"
                 Thread{
