@@ -1,7 +1,6 @@
 # desafioandroidcledsonalves
 Desefio Android Santander
 
-
 ![Alt text](/relative/path/to/hq.png?raw=true "Optional Title")
 
 
