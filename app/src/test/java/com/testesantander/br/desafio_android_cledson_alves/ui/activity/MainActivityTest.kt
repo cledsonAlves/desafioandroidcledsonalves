@@ -1,12 +1,8 @@
 package com.testesantander.br.desafio_android_cledson_alves.ui.activity
 
 import android.content.Context
-import android.net.ConnectivityManager
-import android.widget.ImageView
 import android.widget.ProgressBar
 import com.testesantander.br.desafio_android_cledson_alves.R
-import com.testesantander.br.desafio_android_cledson_alves.ui.utils.Util
-import kotlinx.android.synthetic.main.persona_item_card_view.*
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
@@ -27,23 +23,17 @@ class MainActivityTest {
     lateinit var context: Context
 
     @Mock
-    lateinit var progression:ProgressBar
-
-    @Mock
-    lateinit var imageView:ImageView
-
-    @Mock
-    lateinit var conection : ConnectivityManager
-
+    lateinit var progress:ProgressBar
 
     @Before
     fun setup(){
         activity::class.java
     }
 
+
     @Test
     fun initComponentTest(){
-        Assert.assertNotNull(progression)
+        Assert.assertNotNull(progress)
     }
 
 

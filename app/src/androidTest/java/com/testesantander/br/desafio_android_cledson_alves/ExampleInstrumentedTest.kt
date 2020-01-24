@@ -21,4 +21,5 @@ class ExampleInstrumentedTest {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         assertEquals("com.testesantander.br.desafio_android_cledson_alves", appContext.packageName)
     }
+
 }

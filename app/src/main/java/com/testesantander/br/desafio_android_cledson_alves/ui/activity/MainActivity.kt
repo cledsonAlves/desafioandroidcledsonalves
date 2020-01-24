@@ -42,7 +42,6 @@ class MainActivity : AppCompatActivity(){
     private lateinit var linearLayoutManager: LinearLayoutManager
     lateinit var progress : Dialog
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

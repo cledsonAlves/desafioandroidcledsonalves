@@ -1,14 +1,12 @@
 package com.testesantander.br.desafio_android_cledson_alves.util
 
 
-import com.testesantander.br.desafio_android_cledson_alves.R
 import com.testesantander.br.desafio_android_cledson_alves.model.Prices
 import com.testesantander.br.desafio_android_cledson_alves.ui.utils.Util
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.InjectMocks
-import org.mockito.Mockito
 import org.mockito.runners.MockitoJUnitRunner
 import java.text.DecimalFormat
 
@@ -17,10 +15,6 @@ class UtilTest {
 
     @InjectMocks
     internal var util: Util? = null
-
-
-
-
 
 
     @Test
@@ -39,7 +33,7 @@ class UtilTest {
 
     @Test
     fun getMagazinePriceElseTest(){
-        Assert.assertEquals("R$ 0,00",util!!.getMagazinePrice(ArrayList()))
+       Assert.assertEquals("R$ 0,00",util!!.getMagazinePrice(ArrayList()))
     }
 
 
