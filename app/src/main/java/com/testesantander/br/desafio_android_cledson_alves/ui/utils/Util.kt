@@ -14,6 +14,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.squareup.picasso.Picasso
+import com.testesantander.br.desafio_android_cledson_alves.commonConstants.CommonConstants
 import com.testesantander.br.desafio_android_cledson_alves.model.PersonagemResult
 import com.testesantander.br.desafio_android_cledson_alves.model.Prices
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation
@@ -76,14 +77,14 @@ object Util {
 
     fun getErroHtmlApi(code: Int):String {
         when (code) {
-            404 -> return "Não foi possivel localizar o servidor (URL Não encontrada).Deseja tentar nova requisição?"
-            401 -> return "Não autorizado. Deseja tentar novamente ?"
-            403 -> return "Proibido"
-            409 -> return "Erro na TS, Deseja tentar novamente?"
-            400 -> return "Requisição invalida"
-            502 -> return "Erro interno servidor"
-            504 -> return "Time out"
+            404 -> CommonConstants.NOT_FOUND
+            401 -> return CommonConstants.NOT_AUTHORIZATED
+            403 -> return CommonConstants.ERROR_ACCESS
+            409 -> return CommonConstants.ERROR_TS
+            400 -> return CommonConstants.ERROR_REQUEST
+            502 -> CommonConstants.INTERNAL_ERROR
+            504 -> return CommonConstants.TIME_OUT
         }
-        return "Erro não encontrado"
+        return CommonConstants.ERROR_NOT_FOUND
     }
 }

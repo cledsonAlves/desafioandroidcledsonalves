@@ -79,8 +79,8 @@ class MainActivity : AppCompatActivity(){
                 } else {
                     Util.getErroHtmlApi(response.code())
                     errorApi( response.message(),Util.getErroHtmlApi(response.code()))
-                    Log.e("#MainActivity", "Response : " + response.message())
-                    Log.e("#MainActivity", "Response : " + response.code())
+                    Log.e("#MainActivity", "Response : $response.message()")
+                    Log.e("#MainActivity", "Response code : $response.code()")
                 }
             }
             @RequiresApi(Build.VERSION_CODES.N)
