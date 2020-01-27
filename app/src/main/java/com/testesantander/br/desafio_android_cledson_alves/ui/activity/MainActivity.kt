@@ -82,29 +82,29 @@ class MainActivity : AppCompatActivity(){
                 Log.e("#MainActivity", "OnFailure :" + t.message)
                 progress.dismiss()
                 if (!Util.isNetwork(applicationContext)) {
-                    errorApi(getString(R.string.msg_error_conection),getString(R.string.msg_error_network))
+                    errorApi(getString(R.string.msg_error_conection))
                 }
 
             }
         })
 
     }
-    fun errorApi(title:String,error:String){
+    fun errorApi(title:String){
         val builder: AlertDialog.Builder? = this@MainActivity?.let {
             AlertDialog.Builder(it)
         }
 
         builder?.setMessage(getString(R.string.msg_error_network))
-            ?.setTitle(title)?.setPositiveButton(R.string.msg_sim,
-                DialogInterface.OnClickListener { dialog, id ->
-                    initComponents()
-                    dialog.dismiss()
-                    progress.show()
-                })
-            ?.setNegativeButton(R.string.msg_nao,
-                DialogInterface.OnClickListener { dialog, id ->
-                    finish()
-                })
+            ?.setTitle(title)?.setPositiveButton(R.string.msg_sim
+            ) { dialog, _ ->
+                initComponents()
+                dialog.dismiss()
+                progress.show()
+            }
+            ?.setNegativeButton(R.string.msg_nao
+            ) { _, _ ->
+                finish()
+            }
         val dialog: AlertDialog? = builder?.create()
         dialog?.show()
 
