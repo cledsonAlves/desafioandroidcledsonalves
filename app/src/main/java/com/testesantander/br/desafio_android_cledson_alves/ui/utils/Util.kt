@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package com.testesantander.br.desafio_android_cledson_alves.ui.utils
 
 import android.content.Context
@@ -15,6 +17,7 @@ import com.squareup.picasso.Picasso
 import com.testesantander.br.desafio_android_cledson_alves.model.PersonagemResult
 import com.testesantander.br.desafio_android_cledson_alves.model.Prices
 import jp.wasabeef.picasso.transformations.RoundedCornersTransformation
+import org.jetbrains.anko.toast
 import java.text.DecimalFormat
 import java.util.function.ToDoubleFunction
 
@@ -41,9 +44,7 @@ object Util {
                 .transform(RoundedCornersTransformation(10, 10))
                 .into(imView, object : com.squareup.picasso.Callback {
                     override fun onSuccess() {
-                        if (progressBar != null) {
-                            progressBar.visibility = View.GONE
-                        }
+                        progressBar.visibility = View.GONE
                     }
 
                     override fun onError() {
@@ -73,5 +74,15 @@ object Util {
         ft.commit()
     }
 
-
+    fun getErroHtmlApi(code: Int):String {
+        when (code) {
+            404 -> return "Não foi possivel localizar o servidor (URL Não encontrada).Deseja tentar nova requisição?"
+            403 -> return "Proibido"
+            409 -> return "Erro na TS, Deseja tentar novamente?"
+            400 -> return "Requisição invalida"
+            502 -> return "Erro interno servidor"
+            504 -> return "Time out"
+        }
+        return "Erro não encontrado"
+    }
 }

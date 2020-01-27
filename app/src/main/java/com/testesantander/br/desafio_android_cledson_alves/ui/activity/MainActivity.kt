@@ -77,7 +77,10 @@ class MainActivity : AppCompatActivity(){
                         })
                     }
                 } else {
+                    Util.getErroHtmlApi(response.code())
+                    errorApi( response.message(),Util.getErroHtmlApi(response.code()))
                     Log.e("#MainActivity", "Response : " + response.message())
+                    Log.e("#MainActivity", "Response : " + response.code())
                 }
             }
             @RequiresApi(Build.VERSION_CODES.N)
@@ -85,7 +88,7 @@ class MainActivity : AppCompatActivity(){
                 Log.e("#MainActivity", "OnFailure :" + t.message)
                 progress.dismiss()
                 if (!Util.isNetwork(applicationContext)) {
-                    errorApi(getString(R.string.msg_error_conection))
+                    errorApi(getString(R.string.msg_error_conection), getString(R.string.msg_error_network))
                 }
 
             }
@@ -98,12 +101,12 @@ class MainActivity : AppCompatActivity(){
         Log.i("#MainActivity", "$offset")
     }
 
-    fun errorApi(title:String){
+    fun errorApi(title:String, msg:String){
         val builder: AlertDialog.Builder? = this@MainActivity?.let {
             AlertDialog.Builder(it)
         }
 
-        builder?.setMessage(getString(R.string.msg_error_network))
+        builder?.setMessage(msg)
             ?.setTitle(title)?.setPositiveButton(R.string.msg_sim
             ) { dialog, _ ->
                 initComponents()
