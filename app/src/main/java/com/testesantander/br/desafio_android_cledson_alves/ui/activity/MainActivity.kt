@@ -95,7 +95,7 @@ class MainActivity : AppCompatActivity(){
 
 
     fun loadNextDataFromApi(offset: Int) {
-        //toast(offset)
+        Log.i("#MainActivity", "$offset")
     }
 
     fun errorApi(title:String){
