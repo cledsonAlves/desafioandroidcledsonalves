@@ -77,6 +77,7 @@ object Util {
     fun getErroHtmlApi(code: Int):String {
         when (code) {
             404 -> return "Não foi possivel localizar o servidor (URL Não encontrada).Deseja tentar nova requisição?"
+            401 -> return "Não autorizado. Deseja tentar novamente ?"
             403 -> return "Proibido"
             409 -> return "Erro na TS, Deseja tentar novamente?"
             400 -> return "Requisição invalida"
