@@ -77,12 +77,12 @@ object Util {
 
     fun getErroHtmlApi(code: Int):String {
         when (code) {
-            404 -> CommonConstants.NOT_FOUND
+            404 -> return CommonConstants.NOT_FOUND
             401 -> return CommonConstants.NOT_AUTHORIZATED
             403 -> return CommonConstants.ERROR_ACCESS
             409 -> return CommonConstants.ERROR_TS
             400 -> return CommonConstants.ERROR_REQUEST
-            502 -> CommonConstants.INTERNAL_ERROR
+            502 -> return CommonConstants.INTERNAL_ERROR
             504 -> return CommonConstants.TIME_OUT
         }
         return CommonConstants.ERROR_NOT_FOUND

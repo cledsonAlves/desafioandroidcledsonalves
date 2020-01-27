@@ -1,6 +1,7 @@
 package com.testesantander.br.desafio_android_cledson_alves.util
 
 
+import com.testesantander.br.desafio_android_cledson_alves.commonConstants.CommonConstants
 import com.testesantander.br.desafio_android_cledson_alves.model.Prices
 import com.testesantander.br.desafio_android_cledson_alves.ui.utils.Util
 import org.junit.Assert
@@ -34,6 +35,18 @@ class UtilTest {
     @Test
     fun getMagazinePriceElseTest(){
        Assert.assertEquals("R$ 0,00",util!!.getMagazinePrice(ArrayList()))
+    }
+
+    @Test
+    fun getErroHtmlApiTest(){
+        Assert.assertEquals(Util.getErroHtmlApi(404), CommonConstants.NOT_FOUND)
+        Assert.assertEquals(Util.getErroHtmlApi(401),CommonConstants.NOT_AUTHORIZATED)
+        Assert.assertEquals(Util.getErroHtmlApi(403),CommonConstants.ERROR_ACCESS)
+        Assert.assertEquals(Util.getErroHtmlApi(409), CommonConstants.ERROR_TS)
+        Assert.assertEquals(Util.getErroHtmlApi(400),CommonConstants.ERROR_REQUEST)
+        Assert.assertEquals(Util.getErroHtmlApi(502),CommonConstants.INTERNAL_ERROR)
+        Assert.assertEquals(Util.getErroHtmlApi(504),CommonConstants.TIME_OUT)
+        Assert.assertEquals(Util.getErroHtmlApi(0),CommonConstants.ERROR_NOT_FOUND)
     }
 
 
