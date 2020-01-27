@@ -3,44 +3,40 @@ package com.testesantander.br.desafio_android_cledson_alves.ui.activity
 
 
 import android.app.Dialog
-import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.annotation.NonNull
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
-import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.testesantander.br.desafio_android_cledson_alves.BuildConfig
 import com.testesantander.br.desafio_android_cledson_alves.BuildConfig.*
 import com.testesantander.br.desafio_android_cledson_alves.R
-import com.testesantander.br.desafio_android_cledson_alves.controller.PersonaController
 import com.testesantander.br.desafio_android_cledson_alves.model.Personagem
 import com.testesantander.br.desafio_android_cledson_alves.model.PersonagemResult
 import com.testesantander.br.desafio_android_cledson_alves.network.RetrofitInstance
 import com.testesantander.br.desafio_android_cledson_alves.service.PersonaServices
 import com.testesantander.br.desafio_android_cledson_alves.ui.adapter.PersonaAdapter
+import com.testesantander.br.desafio_android_cledson_alves.ui.utils.EndlessRecyclerViewScrollListener
 import com.testesantander.br.desafio_android_cledson_alves.ui.utils.PersonagemClickListener
 import com.testesantander.br.desafio_android_cledson_alves.ui.utils.Util
-import kotlinx.android.synthetic.main.activity_detalhe_persona.*
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.indeterminateProgressDialog
-import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import androidx.recyclerview.widget.RecyclerView
+import org.jetbrains.anko.toast
 
 
 class MainActivity : AppCompatActivity(){
 
     private lateinit var linearLayoutManager: LinearLayoutManager
     lateinit var progress : Dialog
+    private var scrollListener: EndlessRecyclerViewScrollListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,6 +47,13 @@ class MainActivity : AppCompatActivity(){
     }
 
     private fun initComponents() {
+        scrollListener = object : EndlessRecyclerViewScrollListener(linearLayoutManager) {
+            override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView) {
+                loadNextDataFromApi(page)
+            }
+        }
+        recyclerView.addOnScrollListener(scrollListener as EndlessRecyclerViewScrollListener)
+
         progress =  indeterminateProgressDialog("Carregando aguarde ... ")
         val personaServices = RetrofitInstance.retrofitInstance?.create(PersonaServices::class.java)
         val call = personaServices?.getAllPersonagens(TS, PUBLIC_KEY, MD5)
@@ -89,6 +92,12 @@ class MainActivity : AppCompatActivity(){
         })
 
     }
+
+
+    fun loadNextDataFromApi(offset: Int) {
+        //toast(offset)
+    }
+
     fun errorApi(title:String){
         val builder: AlertDialog.Builder? = this@MainActivity?.let {
             AlertDialog.Builder(it)
