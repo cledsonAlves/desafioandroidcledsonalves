@@ -5,10 +5,13 @@ package com.testesantander.br.desafio_android_cledson_alves.ui.activity
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.transition.*
 import android.util.Log
+import android.view.Window
 import androidx.annotation.NonNull
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityOptionsCompat
 import com.testesantander.br.desafio_android_cledson_alves.BuildConfig.*
 import com.testesantander.br.desafio_android_cledson_alves.R
 import com.testesantander.br.desafio_android_cledson_alves.model.HQ
@@ -31,6 +34,7 @@ class DetalhePersonaActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detalhe_persona)
+        var view = this
         initComponents()
     }
 

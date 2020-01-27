@@ -2,16 +2,18 @@ package com.testesantander.br.desafio_android_cledson_alves.ui.activity
 
 
 
+import android.app.ActivityOptions
 import android.app.Dialog
+import android.app.PendingIntent.getActivity
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.annotation.NonNull
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityOptionsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.testesantander.br.desafio_android_cledson_alves.BuildConfig.*
 import com.testesantander.br.desafio_android_cledson_alves.R
@@ -29,7 +31,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import androidx.recyclerview.widget.RecyclerView
-import org.jetbrains.anko.toast
+
+
 
 
 class MainActivity : AppCompatActivity(){
@@ -38,15 +41,22 @@ class MainActivity : AppCompatActivity(){
     lateinit var progress : Dialog
     private var scrollListener: EndlessRecyclerViewScrollListener? = null
 
+
+
+
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        var layout = layout
         linearLayoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = linearLayoutManager
         initComponents()
     }
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private fun initComponents() {
+
         scrollListener = object : EndlessRecyclerViewScrollListener(linearLayoutManager) {
             override fun onLoadMore(page: Int, totalItemsCount: Int, view: RecyclerView) {
                 loadNextDataFromApi(page)
@@ -69,16 +79,19 @@ class MainActivity : AppCompatActivity(){
                             override fun onClick(personagem: PersonagemResult) {
                                val bundle = Bundle()
                                bundle.putSerializable("personagem", personagem)
-                               val intent = Intent(this@MainActivity, DetalhePersonaActivity::class.java)
-                               intent.putExtras(bundle)
-                               startActivityForResult(intent, 1)
+
+                                val options = ActivityOptions.makeSceneTransitionAnimation(this@MainActivity, layout, "transition")
+
+                                val intent = Intent(this@MainActivity, DetalhePersonaActivity::class.java)
+                                intent.putExtras(bundle)
+                                startActivityForResult(intent, 1, options.toBundle())
 
                             }
                         })
                     }
                 } else {
-                    Util.getErroHtmlApi(response.code())
-                    errorApi( response.message(),Util.getErroHtmlApi(response.code()))
+                    Util.getErrorHtmlApi(response.code())
+                    errorApi( response.message(),Util.getErrorHtmlApi(response.code()))
                     Log.e("#MainActivity", "Response : $response.message()")
                     Log.e("#MainActivity", "Response code : $response.code()")
                 }
@@ -101,6 +114,7 @@ class MainActivity : AppCompatActivity(){
         Log.i("#MainActivity", "$offset")
     }
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     fun errorApi(title:String, msg:String){
         val builder: AlertDialog.Builder? = this@MainActivity?.let {
             AlertDialog.Builder(it)

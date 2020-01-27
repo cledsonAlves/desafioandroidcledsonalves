@@ -59,12 +59,11 @@ object Util {
     // retorna o maior valor de uma lista
     @RequiresApi(api = Build.VERSION_CODES.N)
     fun getMagazinePrice(lista: java.util.ArrayList<Prices>): String? {
-       var price =  lista.stream()
-            .mapToDouble{ it.price }
+        var price = lista.stream()
+            .mapToDouble { it.price }
             .max()
             .orElse(0.0)
-        return  DecimalFormat.getCurrencyInstance().format(price)
-
+        return DecimalFormat.getCurrencyInstance().format(price)
     }
 
     //Adiciona o fragment no layout
@@ -75,7 +74,7 @@ object Util {
         ft.commit()
     }
 
-    fun getErroHtmlApi(code: Int):String {
+    fun getErrorHtmlApi(code: Int):String {
         when (code) {
             404 -> return CommonConstants.NOT_FOUND
             401 -> return CommonConstants.NOT_AUTHORIZATED

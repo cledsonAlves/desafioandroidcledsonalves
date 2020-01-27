@@ -39,14 +39,14 @@ class UtilTest {
 
     @Test
     fun getErroHtmlApiTest(){
-        Assert.assertEquals(Util.getErroHtmlApi(404), CommonConstants.NOT_FOUND)
-        Assert.assertEquals(Util.getErroHtmlApi(401),CommonConstants.NOT_AUTHORIZATED)
-        Assert.assertEquals(Util.getErroHtmlApi(403),CommonConstants.ERROR_ACCESS)
-        Assert.assertEquals(Util.getErroHtmlApi(409), CommonConstants.ERROR_TS)
-        Assert.assertEquals(Util.getErroHtmlApi(400),CommonConstants.ERROR_REQUEST)
-        Assert.assertEquals(Util.getErroHtmlApi(502),CommonConstants.INTERNAL_ERROR)
-        Assert.assertEquals(Util.getErroHtmlApi(504),CommonConstants.TIME_OUT)
-        Assert.assertEquals(Util.getErroHtmlApi(0),CommonConstants.ERROR_NOT_FOUND)
+        Assert.assertEquals(CommonConstants.NOT_FOUND, Util.getErrorHtmlApi(404))
+        Assert.assertEquals(CommonConstants.NOT_AUTHORIZATED, Util.getErrorHtmlApi(401))
+        Assert.assertEquals(CommonConstants.ERROR_ACCESS, Util.getErrorHtmlApi(403))
+        Assert.assertEquals(CommonConstants.ERROR_TS, Util.getErrorHtmlApi(409))
+        Assert.assertEquals(CommonConstants.ERROR_REQUEST, Util.getErrorHtmlApi(400))
+        Assert.assertEquals(CommonConstants.INTERNAL_ERROR, Util.getErrorHtmlApi(502))
+        Assert.assertEquals(CommonConstants.TIME_OUT, Util.getErrorHtmlApi(504))
+        Assert.assertEquals(CommonConstants.ERROR_NOT_FOUND, Util.getErrorHtmlApi(0))
     }
 
 

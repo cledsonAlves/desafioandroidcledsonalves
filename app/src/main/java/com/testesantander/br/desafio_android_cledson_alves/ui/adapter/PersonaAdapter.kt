@@ -2,6 +2,7 @@ package com.testesantander.br.desafio_android_cledson_alves.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.app.ActivityOptionsCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.testesantander.br.desafio_android_cledson_alves.R
 import com.testesantander.br.desafio_android_cledson_alves.model.PersonagemResult
