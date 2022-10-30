@@ -11,5 +11,6 @@ jobs:
         uses: technote-space/create-project-card-action@v1
         with:
           PROJECT: Release
+          projetc_url: https://github.com/users/cledsonAlves/projects/3
           COLUMN: In Progress
  
