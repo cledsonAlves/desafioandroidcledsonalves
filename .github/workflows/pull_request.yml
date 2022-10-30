@@ -12,4 +12,4 @@ jobs:
         with:
           PROJECT: Release
           COLUMN: To do
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+ 
