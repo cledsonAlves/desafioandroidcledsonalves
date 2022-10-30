@@ -1,16 +1,13 @@
 on:
   issues:
     types: [opened]
-name: Issue opened
 jobs:
-  assign:
-    name: Assign issues to project
+  createCard:
     runs-on: ubuntu-latest
     steps:
-      - name: Assign issues to project
-        uses: technote-space/create-project-card-action@v1
+      - name: Create or Update Project Card
+        uses: peter-evans/create-or-update-project-card@v2
         with:
-          PROJECT: https://github.com/users/cledsonAlves/projects/3
-          COLUMN: In Progress
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          project-name: Release
+          column-name: Todo
  
