@@ -1,6 +1,6 @@
 name: Add Card Project
 env:
-   RELEASE_BOOT_TOKEN: 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
+   RELEASE_BOOT_TOKEN: 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
 on:
   issues:
     types: [opened]
@@ -12,5 +12,6 @@ jobs:
         uses: peter-evans/create-or-update-project-card@v2
         with:
           token: ${{ env.RELEASE_BOOT_TOKEN }}
+          project-location: https://github.com/users/cledsonAlves/projects/3
           project-name: Release
           column-name: In Progress
