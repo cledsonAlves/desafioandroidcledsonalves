@@ -11,5 +11,5 @@ jobs:
         uses: technote-space/create-project-card-action@v1
         with:
           PROJECT: Release
-          COLUMN: To do
+          COLUMN: In Progress
  
