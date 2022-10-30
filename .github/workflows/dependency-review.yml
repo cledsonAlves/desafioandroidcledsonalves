@@ -1,15 +1,14 @@
-name: Dependency Review
-on: [pull_request]
-
-permissions:
-  contents: read
-
+on:
+  issues:
+    types: [opened]
+name: Issue opened
 jobs:
-  dependency-review:
-    name: Dependency Review
+  assign:
+    name: Assign issues to project
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-      - name: Perform Dependency Review
-        uses: actions/dependency-review-action@v2
+      - name: Assign issues to project
+        uses: technote-space/create-project-card-action@v1
+        with:
+          PROJECT: Release
+          COLUMN: Todo
