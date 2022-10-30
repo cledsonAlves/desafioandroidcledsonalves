@@ -15,6 +15,9 @@ on:
         default: 'World'
         # Input has to be provided for the workflow to run
         required: true
+        
+env:
+  PROJECT_ID: ${{ secrets.GKE_PROJECT }}
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -27,4 +30,4 @@ jobs:
     steps:
     # Runs a single command using the runners shell
     - name: Send greeting
-      run: git.log
+      run: echo ${{ secrets.GKE_PROJECT }}
