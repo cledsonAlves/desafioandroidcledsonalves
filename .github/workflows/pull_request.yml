@@ -1,29 +1,15 @@
 on:
   issues:
     types: [opened]
-env:
-  PROJECT: 3
-
 name: Issue opened
-
 jobs:
   assign:
     name: Assign issues to project
     runs-on: ubuntu-latest
-    timeout-minutes: 3
     steps:
-      - uses: technote-space/load-config-action@v1
+      - name: Assign issues to project
+        uses: technote-space/create-project-card-action@v1
         with:
-          CONFIG_FILENAME: workflow-settings.json, workflow-details.json
-          IGNORE_WARNING: 'true'
-      - uses: technote-space/create-project-card-action@gh-actions
-        with:
-          PROJECT: ${{ env.PROJECT }}
-          COLUMN: 'backlog'
-
-  assignAuthor:
-    name: Assign author to issue
-    runs-on: ubuntu-latest
-    timeout-minutes: 3
-    steps:
-      - uses: technote-space/assign-author@v1
+          PROJECT: Backlog
+          COLUMN: To do
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
