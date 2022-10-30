@@ -8,6 +8,5 @@ jobs:
       - name: Create or Update Project Card
         uses: peter-evans/create-or-update-project-card@v2
         with:
-          token: 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
           project-name: Release
           column-name: In Progress
