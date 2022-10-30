@@ -30,4 +30,5 @@ jobs:
     steps:
     # Runs a single command using the runners shell
     - name: Send greeting
-      run: echo ${{ secrets.GKE_PROJECT }}
+    - uses: actions/checkout@v2
+   
