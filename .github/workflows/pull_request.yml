@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: initial labeling
-        uses: andymckay/labeler@master
+        uses: andymckay/labeler@develop
         with:
           add-labels: "needs-triage, bug"
           remove-labels: "merge_ready"
