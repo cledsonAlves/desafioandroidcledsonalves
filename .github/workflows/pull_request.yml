@@ -1,10 +1,9 @@
 name: Valida Pull Request
 on:
-  workflow_dispatch:
   pull_request_review:
-  types: [submitted]
-         
-  jobs:
+    types: [submitted]
+
+jobs:
   approved:
     if: github.event.review.state == 'approved'
     runs-on: ubuntu-latest
