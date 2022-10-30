@@ -10,6 +10,6 @@ jobs:
       - name: Assign issues to project
         uses: technote-space/create-project-card-action@v1
         with:
-          PROJECT: Backlog
+          PROJECT: Release
           COLUMN: To do
           repo-token: ${{ secrets.GITHUB_TOKEN }}
