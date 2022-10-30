@@ -10,7 +10,7 @@ jobs:
       - name: Assign issues to project
         uses: technote-space/create-project-card-action@v1
         with:
-          PROJECT: Release
+          PROJECT: https://github.com/users/cledsonAlves/projects/3
           COLUMN: In Progress
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
  
