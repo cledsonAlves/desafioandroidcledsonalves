@@ -1,17 +1,15 @@
-name: Add Card Project
-env:
-   RELEASE_BOOT_TOKEN: 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
-on:
-  issues:
+name: Add PR to SWA dev board
+on: 
+  pull_request:
     types: [opened]
 jobs:
-  createCard:
+  add-project-card-to-board:
     runs-on: ubuntu-latest
     steps:
-      - name: Create or Update Project Card
-        uses: peter-evans/create-or-update-project-card@v2
-        with:
-          token: ${{  secrets.GITHUB_TOKEN }}
-          project-location: https://github.com/users/cledsonAlves/projects/3
-          project-name: Release
-          column-name: In Progress
+    - name: 'Add card to project board'
+      uses: signavio/create-project-card-action@v1
+      with:
+         column_id: 2
+         github_token: ${{ secrets.GITHUB_TOKEN  }}
+         ignore_drafts: true
+   
