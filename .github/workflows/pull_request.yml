@@ -12,3 +12,4 @@ jobs:
         with:
           PROJECT: Backlog
           COLUMN: To do
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
