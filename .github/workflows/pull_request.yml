@@ -1,17 +1,28 @@
 on:
   issues:
     types: [opened]
+
+name: Issue opened
+
 jobs:
-  createCard:
+  assign:
+    name: Assign issues to project
     runs-on: ubuntu-latest
+    timeout-minutes: 3
     steps:
-      - name: Create or Update Project Card
-        uses: peter-evans/create-or-update-project-card@v2
+      - uses: technote-space/load-config-action@v1
         with:
-          token: ${{ secrets.SECRET_ACTION }}
-          project-name: Release
-          project-location: https://github.com/users/cledsonAlves/projects/3
-          project-number: 3
-          column-name: In Progress
-          
+          CONFIG_FILENAME: workflow-settings.json, workflow-details.json
+          IGNORE_WARNING: 'true'
+      - uses: technote-space/create-project-card-action@gh-actions
+        with:
+          PROJECT: Release
+          COLUMN: In Progress
+
+  assignAuthor:
+    name: Assign author to issue
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: technote-space/assign-author@v1
  
