@@ -5,8 +5,8 @@ on:
     types: [submitted]
 
 jobs:
-  approved:
-    if: github.event.review.state == 'created'
+  opened:
+    if: github.event.review.state == 'opened'
     runs-on: ubuntu-latest
     steps:
       - run: echo "This PR was approved"
