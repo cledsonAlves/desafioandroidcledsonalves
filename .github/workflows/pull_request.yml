@@ -8,7 +8,7 @@ jobs:
       - name: Create or Update Project Card
         uses: peter-evans/create-or-update-project-card@v2
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.SECRET_ACTION }}
           project-name: Release
           project-location: https://github.com/users/cledsonAlves/projects/3
           project-number: 3
