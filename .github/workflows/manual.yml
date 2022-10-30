@@ -1,21 +1,15 @@
+
+name: "Pull Request Labeler"
 on:
   workflow_dispatch:
-  push: {branches: main}
-  pull_request: {branches: main}
 
 jobs:
-  test:
+  triage:
+    permissions:
+      contents: read
+      pull-requests: write
     runs-on: ubuntu-latest
-    name: Check licenses
     steps:
-      - uses: actions/checkout@v3
-      - run:  |
-          if [ -e yarn.lock ]; then
-          yarn install --frozen-lockfile
-          elif [ -e package-lock.json ]; then
-          npm ci
-          else
-          npm i
-          fi
-      - run: npm ci
-      - run: npm run licensed-check
+    - uses: actions/labeler@v4
+      with:
+        repo-token: "${{ secrets.GITHUB_TOKEN }}"
