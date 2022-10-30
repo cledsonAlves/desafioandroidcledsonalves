@@ -1,3 +1,6 @@
+name: Add Card Project
+env:
+   RELEASE_BOOT_TOKEN: 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
 on:
   issues:
     types: [opened]
@@ -8,6 +11,6 @@ jobs:
       - name: Create or Update Project Card
         uses: peter-evans/create-or-update-project-card@v2
         with:
-          token: ${{ secrets.clealsa }}
+          token: ${{ env.RELEASE_BOOT_TOKEN }}
           project-name: Release
           column-name: In Progress
