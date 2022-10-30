@@ -1,5 +1,6 @@
 name: Add PR to SWA dev board
 on: 
+  workflow_dispatch:
   pull_request:
     types: [opened]
 jobs:
