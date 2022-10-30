@@ -9,6 +9,7 @@ jobs:
         uses: peter-evans/create-or-update-project-card@v2
         with:
           project-name: Release
+          project-number: 3
           column-name: In Progress
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
  
