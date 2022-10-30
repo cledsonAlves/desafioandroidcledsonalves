@@ -1,12 +1,14 @@
-name: Valida Pull Request
 on:
-  workflow_dispatch:
-  pull_request_review:
-    types: [submitted]
-
+  issues:
+    types: [opened]
+name: Issue opened
 jobs:
-  opened:
-    if: github.event.review.state == 'opened'
+  assign:
+    name: Assign issues to project
     runs-on: ubuntu-latest
     steps:
-      - run: echo "This PR was approved"
+      - name: Assign issues to project
+        uses: technote-space/create-project-card-action@v1
+        with:
+          PROJECT: Backlog
+          COLUMN: To do
