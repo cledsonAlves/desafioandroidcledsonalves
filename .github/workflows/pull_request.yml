@@ -8,5 +8,6 @@ jobs:
       - name: Create or Update Project Card
         uses: peter-evans/create-or-update-project-card@v2
         with:
+          token: ${{ secrets.clealsa }}
           project-name: Release
           column-name: In Progress
