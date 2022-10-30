@@ -1,6 +1,8 @@
 on:
   issues:
     types: [opened]
+env:
+  PROJECT: 3
 
 name: Issue opened
 
@@ -17,7 +19,7 @@ jobs:
       - uses: technote-space/create-project-card-action@gh-actions
         with:
           PROJECT: ${{ env.PROJECT }}
-          COLUMN: ${{ env.ISSUE_COLUMN }}
+          COLUMN: 'backlog'
 
   assignAuthor:
     name: Assign author to issue
