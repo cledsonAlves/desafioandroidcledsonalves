@@ -1,0 +1,20 @@
+name: issue-automation-master
+
+on:
+  issues:
+    types: [opened]
+  pull_request:
+    types: [opened]
+  project_card:
+    types: [moved]
+
+jobs:
+  automate-issues-labels:
+    runs-on: ubuntu-latest
+    steps:
+      - name: initial labeling
+        uses: andymckay/labeler@master
+        with:
+          add-labels: "needs-triage, master"
+          remove-labels: "merge_ready"
+   
