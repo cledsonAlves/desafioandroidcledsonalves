@@ -15,6 +15,6 @@ jobs:
       - name: initial labeling
         uses: andymckay/labeler@master
         with:
-          add-labels: "needs-triage, bug"
+          add-labels: "needs-triage, master"
           remove-labels: "merge_ready"
    
