@@ -15,4 +15,4 @@ jobs:
        with:
         label-operator: NOT
         project-url: https://github.com/users/cledsonAlves/projects/3
-        github-token: "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"
+        github-token: ${{ secrets.GITHUB_TOKEN }}
