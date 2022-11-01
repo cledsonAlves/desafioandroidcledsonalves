@@ -2,6 +2,7 @@ on:
   pull_request:
     types:
       - closed
+name: Merged
 
 jobs:
   if_merged:
