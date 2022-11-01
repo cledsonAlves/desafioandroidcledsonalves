@@ -6,8 +6,8 @@ on:
 
 jobs:
   add-issue-to-project:
-   permissions: 
-     repository-projects: write-all
+   permissions: write-all
+
    runs-on: ubuntu-latest
    steps:
      - name: add
