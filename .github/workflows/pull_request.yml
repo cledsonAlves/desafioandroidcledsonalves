@@ -1,4 +1,4 @@
-name: issue-automation
+name: issue-automation-master
 
 on:
   issues:
