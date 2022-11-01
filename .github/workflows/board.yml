@@ -1,0 +1,18 @@
+on:
+  workflow_dispatch:
+  pull_request:
+    types:
+      [opened]
+
+
+jobs:
+  permissions:
+     repository-projects: write
+    runs-on: ubuntu-latest
+    steps:
+    - name: add
+      uses: actions/add-to-project@v0.3.0
+      with:
+        label-operator: NOT
+        project-url: https://github.com/users/cledsonAlves/projects/3
+        github-token: "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"
