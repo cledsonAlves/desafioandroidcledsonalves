@@ -8,6 +8,6 @@ on:
 
 jobs:
    call-workflow-in-local-repo:
-    uses: ./.github/workflows/board.yml
+    uses: ./.github/workflows/board.ymls
  
 
