@@ -1,13 +1,21 @@
 name: Reusable workflow with matrix strategy
 
 on:
-  push:
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  ReuseableMatrixJobForDeployment:
-    strategy:
-      matrix:
-        target: [dev, stage, prod]
-    uses: ./.github/workflows/reuse.yml
+  call-workflow:
+    uses: ./.github/workflows/use.yml
+
+  call-workflow-passing-data:
+    permissions:
+      contents: read
+      pull-requests: write
+    uses: ./.github/workflows/use.yml
     with:
-      target: ${{ matrix.target }}
+      config-path: .github/use.yml
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
+    
