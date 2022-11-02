@@ -16,3 +16,6 @@ jobs:
         label-operator: NOT
         project-url: https://github.com/users/cledsonAlves/projects/3
         github-token: "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"
+        
+        -name: roda novo job
+        uses: https://github.com/cledsonAlves/desafioandroidcledsonalves/blob/master/.github/workflows/board.yml@main
