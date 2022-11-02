@@ -1,15 +1,20 @@
+name: Reusable workflow example
+
 on:
-  workflow_dispatch:
-  pull_request:
-    types:
-      - closed
-name: Merged
+  workflow_call:
+    inputs:
+      config-path:
+        required: true
+        type: string
+    secrets:
+      token:
+        required: true
 
 jobs:
-  if_merged:
-    if: github.event.pull_request.merged == true
+  triage:
     runs-on: ubuntu-latest
     steps:
-    - run: |
-        echo The PR was merged
-        
+    - uses: actions/labeler@v4
+      with:
+        repo-token: ${{ secrets.token }}
+        configuration-path: ${{ inputs.config-path }}
