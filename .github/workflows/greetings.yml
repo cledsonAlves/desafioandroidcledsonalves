@@ -1,16 +1,36 @@
-name: Greetings
-
-on: [pull_request_target, issues]
+on:
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning' 
+        type: choice
+        options:
+        - info
+        - warning
+        - debug 
+      print_tags:
+        description: 'True to print to STDOUT'
+        required: true 
+        type: boolean 
+      tags:
+        description: 'Test scenario tags'
+        required: true 
+        type: string
+      environment:
+        description: 'Environment to run tests against'
+        type: environment
+        required: true 
 
 jobs:
-  greeting:
+  print-tag:
     runs-on: ubuntu-latest
-    permissions:
-      issues: write
-      pull-requests: write
+    if:  ${{ inputs.print_tags }} 
     steps:
-    - uses: actions/first-interaction@v1
-      with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
-        issue-message: "Message that will be displayed on users' first issue"
-        pr-message: "Message that will be displayed on users' first pull request"
+      - name: Print the input tag to STDOUT
+        run: echo  The tags are ${{ inputs.tags }} 
+
+
+
+    
