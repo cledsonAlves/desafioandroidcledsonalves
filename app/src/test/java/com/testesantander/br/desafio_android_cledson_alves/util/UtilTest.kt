@@ -18,7 +18,7 @@ class UtilTest {
     internal var util: Util? = null
 
 
-    @Test
+
     fun getMagazinePriceTest() {
         var lista = ArrayList<Prices>()
 
@@ -32,7 +32,7 @@ class UtilTest {
         Assert.assertEquals(DecimalFormat.getCurrencyInstance().format(p1.price), util!!.getMagazinePrice(lista))
     }
 
-    @Test
+  
     fun getMagazinePriceElseTest(){
        Assert.assertEquals("R$ 0,00",util!!.getMagazinePrice(ArrayList()))
     }
