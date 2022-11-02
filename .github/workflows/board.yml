@@ -1,21 +1,20 @@
+name: board
+
 on:
-  workflow_dispatch:
-  pull_request:
-    types:
-      [opened]
+  workflow_call:
+    inputs:
+      config-path:
+        required: true
+        type: string
+    secrets:
+      token:
+        required: true
 
 jobs:
-  add-issue-to-project:
-   permissions: write-all
-
-   runs-on: ubuntu-latest
-   steps:
-     - name: add
-       uses: actions/add-to-project@v0.3.0
-       with:
-        label-operator: NOT
-        project-url: https://github.com/users/cledsonAlves/projects/3
-        github-token: "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"
-        
-        -name: roda novo job
-        uses: https://github.com/cledsonAlves/desafioandroidcledsonalves/blob/master/.github/workflows/board.yml@main
+  triage:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/labeler@v4
+      with:
+        repo-token: ${{ secrets.token }}
+        configuration-path: ${{ inputs.config-path }}
