@@ -1,0 +1,12 @@
+name: Validate Label
+on:
+  pull_request:
+    types:
+      - labeled
+
+jobs:
+  run_if_label_matches:
+    if: github.event.label.name == 'merge_ready'
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'The label was bug'
