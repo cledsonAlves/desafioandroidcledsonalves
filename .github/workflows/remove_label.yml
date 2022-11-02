@@ -2,8 +2,7 @@ name: CI Remove Label
 on:
   pull_request:
     types:
-      - opened
-      - edited
+      - labeled
                                
 
 jobs:
