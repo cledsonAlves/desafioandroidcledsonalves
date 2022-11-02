@@ -12,25 +12,15 @@ jobs:
     
     
   remove-label:
-   runs-on: ubuntu-latest
-   
+   uses: ./.github/workflows/validate_label.yml
    needs: valida-label
-   steps:
-    - run: echo  'Rodou todos os jobs'
+
     
   remove-label2:
-   runs-on: ubuntu-latest
-   
-   needs: valida-label
-   steps:
-    - run: echo  'Rodou todos os jobs'
-    
-  finaliza:
-    runs-on: ubuntu-latest
-   
-    needs: remove-label2
-    steps:
-    - run: echo  'Rodou todos os jobs'
+   uses: ./.github/workflows/validate_label.yml
+   needs: remove-label
+ 
+
     
   
 
