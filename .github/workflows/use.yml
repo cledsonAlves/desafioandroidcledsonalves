@@ -1,0 +1,13 @@
+name: Reusable workflow with matrix strategy
+
+on:
+  push:
+
+jobs:
+  ReuseableMatrixJobForDeployment:
+    strategy:
+      matrix:
+        target: [dev, stage, prod]
+    uses: cledsonAlves/desafioandroidcledsonalves/.github/workflows/reuse.yml@master
+    with:
+      target: ${{ matrix.target }}
