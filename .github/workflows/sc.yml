@@ -8,13 +8,13 @@ on:
 
 jobs:
   call-workflow:
-    uses: cledsonAlves/desafioandroidcledsonalves/.github/workflows/workflow-board.yml@master
+    uses: /.github/workflows/workflow-board.yml@master
 
   call-workflow-passing-data:
     permissions:
       contents: read
       pull-requests: write
-    uses: cledsonAlves/desafioandroidcledsonalves/.github/workflows/workflow-board.yml@master
+    uses: /.github/workflows/workflow-board.yml@master
     with:
       config-path: .github/labeler.yml
     secrets:
