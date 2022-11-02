@@ -9,14 +9,5 @@ on:
 jobs:
   call-workflow:
     uses: ./.github/workflows/board.yml
-
-  call-workflow-passing-data:
-    permissions:
-      contents: read
-      pull-requests: write
-    uses: ./.github/workflows/board.yml
-    with:
-      config-path: .github/labeler.yml
-    secrets:
-      token: ${{ secrets.GITHUB_TOKEN }}
+ 
 
