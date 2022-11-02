@@ -7,7 +7,7 @@ on:
       - master
 
 jobs:
-  call-workflow:
+   call-workflow-in-local-repo:
     uses: ./.github/workflows/board.yml
  
 
