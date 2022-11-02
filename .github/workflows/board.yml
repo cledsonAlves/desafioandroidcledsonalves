@@ -1,20 +1,12 @@
-name: board
-
 on:
-  workflow_call:
-    inputs:
-      config-path:
-        required: true
-        type: string
-    secrets:
-      token:
-        required: true
+  schedule:
+    - cron: '*/2 * * * *'
+
 
 jobs:
-  triage:
+  test_schedule:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/labeler@v4
-      with:
-        repo-token: ${{ secrets.token }}
-        configuration-path: ${{ inputs.config-path }}
+  
+      - name: Every time
+        run: echo "This step will always run"
