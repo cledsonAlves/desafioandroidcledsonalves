@@ -16,8 +16,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR: ${{ github.event.pull_request.html_url }}
+          NM: ${{ github.event.pull_request.number }}
         run: |
           gh pr edit $PR --remove-label 'merge_ready'
           gh pr comment $PR --body 'It looks like you edited `package*.json`, `.github/CODEOWNERS`, or `.github/workflows/**`. We do not allow contributions to these files. Please review our [contributing guidelines](https://github.com/users/cledsonAlves/projects/3) for what contributions are accepted.'
-          echo github.event.pull_request.number
+          echo NM
          
