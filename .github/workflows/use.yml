@@ -8,15 +8,15 @@ on:
 
 jobs:
   call-workflow:
-    uses: ./.github/workflows/reuse.yml
+    uses: ./.github/workflows/validate_label.yml
 
   call-workflow-passing-data:
     permissions:
       contents: read
       pull-requests: write
-    uses: ./.github/workflows/reuse.yml
+    uses: ./.github/workflows/validate_label.yml
     with:
-      config-path: .github/reuse.yml
+      config-path: .github/validate_label.yml
     secrets:
       token: ${{ secrets.GITHUB_TOKEN }}
     
