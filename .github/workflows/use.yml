@@ -16,6 +16,5 @@ jobs:
       pull-requests: write
     uses: ./.github/workflows/validate_label.yml
 
-    secrets:
-      token: ${{ secrets.GITHUB_TOKEN }}
+    
     
