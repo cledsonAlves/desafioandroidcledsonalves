@@ -13,7 +13,7 @@ jobs:
     permissions:
       contents: read
       pull-requests: write
-    uses: https://github.com/cledsonAlves/desafioandroidcledsonalves/blob/master/.github/workflows/board.yml@main
+    uses: cledsonAlves//desafioandroidcledsonalves/.github/workflows/workflow-board.yml@main
     with:
       config-path: .github/labeler.yml
     secrets:
