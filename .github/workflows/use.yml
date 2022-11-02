@@ -1,4 +1,4 @@
-name: Reusable workflow with matrix strategy
+name: Boot CI
 
 on:
   pull_request:
@@ -16,6 +16,20 @@ jobs:
    
    needs: valida-label
    steps:
+    - run: echo  'Rodou todos os jobs'
+    
+  remove-label2:
+   runs-on: ubuntu-latest
+   
+   needs: valida-label
+   steps:
+    - run: echo  'Rodou todos os jobs'
+    
+  remove-label3:
+    runs-on: ubuntu-latest
+   
+    needs: valida-label
+    steps:
     - run: echo  'Rodou todos os jobs'
 
   
