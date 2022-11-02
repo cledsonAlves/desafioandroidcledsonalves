@@ -8,6 +8,6 @@ jobs:
     strategy:
       matrix:
         target: [dev, stage, prod]
-    uses: cledsonAlves/desafioandroidcledsonalves/.github/workflows/reuse.yml@master
+    uses: ./.github/workflows/reuse.yml
     with:
       target: ${{ matrix.target }}
