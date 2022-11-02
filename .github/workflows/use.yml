@@ -2,8 +2,9 @@ name: Reusable workflow with matrix strategy
 
 on:
   pull_request:
-    branches:
-      - main
+     types:
+      - labeled
+
 
 jobs:
   call-workflow:
