@@ -25,12 +25,14 @@ jobs:
    steps:
     - run: echo  'Rodou todos os jobs'
     
-  remove-label3:
+  finaliza:
     runs-on: ubuntu-latest
    
-    needs: valida-label
+    needs: remove-label2
     steps:
     - run: echo  'Rodou todos os jobs'
+    
+  
 
   
 
