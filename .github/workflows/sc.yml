@@ -1,21 +1,21 @@
-name: Android CI
-on: [push]
+name: Call a reusable workflow
+
+on:
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  test:
-    runs-on: macOS-latest
-    steps:
-      - uses: actions/checkout@v1
-      - name: set up JDK 1.8
-        uses: actions/setup-java@v1
-        with:
-          java-version: 1.8
+  call-workflow:
+    uses: octo-org/example-repo/.github/workflows/workflow-A.yml@v1
 
-      - name: Run unit tests
-        run: chmod +x ./gradlew && ./gradlew testDebugUnitTest
-
-  build:
-    runs-on: macOS-latest
-  jobs:
-     uses: https://github.com/cledsonAlves/desafioandroidcledsonalves/edit/master/.github/workflows/merge.yml@main
+  call-workflow-passing-data:
+    permissions:
+      contents: read
+      pull-requests: write
+    uses: https://github.com/cledsonAlves/desafioandroidcledsonalves/blob/master/.github/workflows/board.yml@main
+    with:
+      config-path: .github/labeler.yml
+    secrets:
+      token: ${{ secrets.GITHUB_TOKEN }}
 
