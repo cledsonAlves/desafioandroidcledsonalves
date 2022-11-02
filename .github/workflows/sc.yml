@@ -8,7 +8,7 @@ on:
 
 jobs:
   call-workflow:
-    uses: cledsonAlves/desafioandroidcledsonalves/.github/workflows/workflow-board.yml@main
+    uses: cledsonAlves/desafioandroidcledsonalves/.github/workflows/workflow-board.yml@master
 
   call-workflow-passing-data:
     permissions:
