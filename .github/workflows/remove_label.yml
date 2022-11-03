@@ -4,7 +4,11 @@ on:
   
 jobs:
   valida-label:
-    uses: ./.github/workflows/validate_label.yml
+   if: github.event.label.name == 'merge_ready'
+   runs-on: ubuntu-latest
+   steps:
+      - run: echo 'The label was bug'
+   
     
   triage:
     needs: valida-label
