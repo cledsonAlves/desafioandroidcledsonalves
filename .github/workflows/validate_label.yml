@@ -6,8 +6,7 @@ on:
 jobs:
   run_if_label_matches:
     if: github.event.label.name == 'merge_ready'
-    runs-on: ubuntu-latest
-    steps:
-        - name: validate
-          uses: ./.github/workflows/remove_label.yml
+    uses: ./.github/workflows/remove_label.yml
+   
+          
   
