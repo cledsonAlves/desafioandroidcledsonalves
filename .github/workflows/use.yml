@@ -11,14 +11,7 @@ jobs:
     uses: ./.github/workflows/validate_label.yml
     
     
-  remove-label:
-   uses: ./.github/workflows/remove_label.yml
-   needs: valida-label
 
-    
-  remove-label2:
-   uses: ./.github/workflows/validate_label.yml
-   needs: remove-label
  
 
     
