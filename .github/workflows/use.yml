@@ -6,14 +6,14 @@ on:
       - labeled
 
 jobs:
-  match-label-pr:
+  validate-label:
    if: github.event.label.name == 'merge_ready'
    runs-on: ubuntu-latest
    steps:
       - run: echo 'The label was merge_ready'
    
     
-  removed-label-pr:
+  removed-label:
     needs: match-label-pr
     if: >-
       github.event.pull_request.user.login != 'octobot' &&
