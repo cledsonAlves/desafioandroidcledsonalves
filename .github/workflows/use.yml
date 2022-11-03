@@ -12,7 +12,7 @@ jobs:
     
     
   remove-label:
-   uses: ./.github/workflows/validate_label.yml
+   uses: ./.github/workflows/remove_label.yml
    needs: valida-label
 
     
