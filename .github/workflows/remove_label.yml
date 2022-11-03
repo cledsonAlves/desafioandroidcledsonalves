@@ -1,10 +1,7 @@
-name: CI Remove Label
+name: Remove Label
 on:
-  pull_request:
-    types:
-      - labeled
-                               
-
+  workflow_call:
+  
 jobs:
   triage:
     if: >-
@@ -16,9 +13,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR: ${{ github.event.pull_request.html_url }}
-          NM: ${{ github.event.pull_request.number }}
+         
         run: |
           gh pr edit $PR --remove-label 'merge_ready'
-          gh pr comment $PR --body 'It looks like you edited `package*.json`, `.github/CODEOWNERS`, or `.github/workflows/**`. We do not allow contributions to these files. Please review our [contributing guidelines](https://github.com/users/cledsonAlves/projects/3) for what contributions are accepted.'
-          echo $NM
+          gh pr edit $PR --add-label 'Sala de Integração'
+          gh pr comment $PR --body 'Você não pode incluir a label Merge_Ready no seu PR, se o seu pr esta pronto para ser mergeado, por favor solicite a Sala de Integração!'
+       
          
