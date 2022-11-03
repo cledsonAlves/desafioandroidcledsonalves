@@ -6,12 +6,10 @@ on:
       - labeled
 
 jobs:
-  valida-label:
-    uses: ./.github/workflows/validate_label.yml
-    
+
   remove-label:
     uses: ./.github/workflows/remove_label.yml
-    needs: valida-label
+   
     
     
 
