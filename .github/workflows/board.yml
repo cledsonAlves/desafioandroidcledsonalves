@@ -1,33 +1,15 @@
-name: 'update-codeowners'
+name: PR Labeler
 on:
   pull_request:
-    branches:
-      - master
-  push:
-    branches:
-      - master
-      - 'releases/*'
+    types: 
+     - labeled
 
 jobs:
-  update:
+  pr-labeler:
     runs-on: ubuntu-latest
-    # Read the notes about preventing merges overwriting owners created by PR
-    if:  ${{ !startsWith( github.event.head_commit.message, 'Merge pull request' ) }}
     steps:
-      - uses: actions/checkout@master
+      - uses: nrccua-walter-manger/pr-label-by-base@v0.1-alpha
         with:
-          fetch-depth: 0
-      - name: create CODEOWNERS
-        id: codeowners
-        uses: dmikov/github-action-codeowners-last@main
-        with:
-          number_of_code_owners: 2
-      - name: commit CODEOWNERS
-        if: ${{ steps.codeowners.outputs.file }}
-        uses: EndBug/add-and-commit@v5
-        with:
-          message: 'commit CODEOWNERS'
-          add: ${{ steps.codeowners.outputs.file }}
+          configuration-path: .github/pr-label-by-base.yml
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
- 
+          REPO_ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
