@@ -1,15 +1,33 @@
+name: 'update-codeowners'
 on:
-    pull_request:
-      types: 
-       - labeled
- 
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
+      - 'releases/*'
+
 jobs:
-  Tweet-Repo-Job:
+  update:
     runs-on: ubuntu-latest
-    name: A job to tweet my repository
+    # Read the notes about preventing merges overwriting owners created by PR
+    if:  ${{ !startsWith( github.event.head_commit.message, 'Merge pull request' ) }}
     steps:
-      - name: Tweet repo
-        uses: obasekietinosa/tweet-for-code-review-action@v1
+      - uses: actions/checkout@master
         with:
-          api-key: ${{  secrets.GITHUB_TOKEN }}
-          tweet-body: I just updated my repo. Check it out and let me know what you think
+          fetch-depth: 0
+      - name: create CODEOWNERS
+        id: codeowners
+        uses: dmikov/github-action-codeowners-last@main
+        with:
+          number_of_code_owners: 2
+      - name: commit CODEOWNERS
+        if: ${{ steps.codeowners.outputs.file }}
+        uses: EndBug/add-and-commit@v5
+        with:
+          message: 'commit CODEOWNERS'
+          add: ${{ steps.codeowners.outputs.file }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+ 
