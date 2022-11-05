@@ -1,18 +1,18 @@
-name: Label issues
-on:
-  workflow_dispatch:
-  issues:
-    types:
-      - reopened
-      - opened
+name: pr-labeler
+
+on: [pull_request]
+
 jobs:
-  label_issues:
+  pr-labeler:
     runs-on: ubuntu-latest
-    permissions:
-      issues: write
+    name: Label the PR size
     steps:
-      - name: Label issues
-        uses: andymckay/labeler@e6c4322d0397f3240f0e7e30a33b5c5df2d39e90
+      - uses: coverwallet/pr-labeler@v1.2.1
         with:
-          add-labels: "sala de integração"
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          xs_max_size: '10'
+          s_max_size: '100'
+          m_max_size: '500'
+          l_max_size: '1000'
+          exclude_files: '.txt'
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
