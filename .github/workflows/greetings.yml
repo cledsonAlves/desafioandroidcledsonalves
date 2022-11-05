@@ -1,24 +1,14 @@
 on:
-  workflow_dispatch:
   pull_request:
-    types:
-      - opened
-    paths:
-      - '.github/workflows/**'
-      - '.github/CODEOWNERS'
-      - 'package*.json'
 
 jobs:
-  triage:
-    if: >-
-      github.event.pull_request.user.login != 'octobot' &&
-      github.event.pull_request.user.login != 'dependabot[bot]'
+  test:
     runs-on: ubuntu-latest
     steps:
-      - name: "Comment about changes we can't accept"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR: ${{ github.event.pull_request.html_url }}
-        run: |
-          gh pr edit $PR --add-label 'invalid'
-          gh pr comment $PR --body 'It looks like you edited `package*.json`, `.github/CODEOWNERS`, or `.github/workflows/**`. We do not allow contributions to these files. Please review our [contributing guidelines](https://github.com/octo-org/octo-repo/blob/main/CONTRIBUTING.md) for what contributions are accepted.'
+      - uses: nbaztec/add-pr-review-comment@v1
+        with:
+          message: |
+            [{"path":"lib/main.js","line":10,"text":"something was deleted","side":"RIGHT"},{"path":"lib/main.js","line":8,"text":"something was added","side":"LEFT"}]
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          repo-token-user-login: 'github-actions[bot]' # The user.login for temporary GitHub tokens
+          allow-repeats: false # This is the default
