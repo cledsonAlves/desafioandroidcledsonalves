@@ -1,16 +1,14 @@
-on:
-  pull_request:
-   types:
-   - labeled
-
+name: PR Size Checker
+on: pull_request
 jobs:
-  test:
+  check_pr_size:
+    name: Check PR size doesn't break set limit
     runs-on: ubuntu-latest
     steps:
-      - uses: nbaztec/add-pr-review-comment@v1
+      # checkout your code with your git history
+      - uses: actions/checkout@v2
         with:
-          message: |
-            [{"path":"lib/main.js","line":10,"text":"something was deleted","side":"RIGHT"},{"path":"lib/main.js","line":8,"text":"something was added","side":"LEFT"}]
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          repo-token-user-login: 'cledsonAlves' # The user.login for temporary GitHub tokens
-          allow-repeats: false # This is the default
+          fetch-depth: 0
+      - uses: maidsafe/pr_size_checker@v2
+        with:
+          max_lines_changed: 200
