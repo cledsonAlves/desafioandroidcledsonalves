@@ -1,8 +1,9 @@
 name: Add PR Owner
 
 on:
-  pull_request_review:
-    types: [submitted]
+  pull_request:
+    types:
+    - labeled
 
 jobs:
   add-pr-owner:
