@@ -1,14 +1,13 @@
-name: PR Size Checker
-on: pull_request
+name: 'build-test'
+on: # rebuild any PRs and main branch changes
+  pull_request:
+
 jobs:
-  check_pr_size:
-    name: Check PR size doesn't break set limit
+  test: # make sure the action works on a clean machine without building
     runs-on: ubuntu-latest
     steps:
-      # checkout your code with your git history
       - uses: actions/checkout@v2
+      - uses: ./
         with:
-          fetch-depth: 0
-      - uses: maidsafe/pr_size_checker@v2
-        with:
-          max_lines_changed: 200
+          token: ${{ secrets.GITHUB_TOKEN }}
+          minimum_approvals: 1
