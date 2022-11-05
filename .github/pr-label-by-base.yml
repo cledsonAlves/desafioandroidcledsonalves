@@ -1,0 +1,3 @@
+branchLabels:
+  main: ['master']
+  multi: ['1', '2', '3']
