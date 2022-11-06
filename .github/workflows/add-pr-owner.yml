@@ -4,11 +4,16 @@ on:
   pull_request:
     types:
     - labeled
-
+    
 jobs:
-  add-pr-owner:
+  ktlint:
+    name: Check Code Quality
     runs-on: ubuntu-latest
+
     steps:
-      - uses: a-b-r-o-w-n/add-pr-owner-action@v1
+      - name: Clone PR
+        uses: actions/checkout@v2
         with:
-          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          fetch-depth: 1
+      - name: Run Ktlint
+        uses: lucasnlm/ktlint-action@master
