@@ -25,3 +25,4 @@ jobs:
           title: Karma Test Coverage
 
       - name: Print the output summary
+        run: echo "Report coverage json ${{ steps.report.outputs.summary }}"
