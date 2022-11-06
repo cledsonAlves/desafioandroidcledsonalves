@@ -1,5 +1,3 @@
-@file:Suppress("DEPRECATION")
-
 package com.testesantander.br.desafio_android_cledson_alves.ui.utils
 
 import android.content.Context
@@ -35,7 +33,6 @@ object Util {
             .any{it.state == NetworkInfo.State.CONNECTED}
     }
 
-    // atualiza  uma imageview
     @RequiresApi(Build.VERSION_CODES.N)
     fun getPicture(context:Context, path:String, imView:ImageView, progressBar:ProgressBar){
         // Picasso.with(itemView.context).load(path).placeholder(R.drawable.placeholder).fit().centerCrop().into(iv_persona)
