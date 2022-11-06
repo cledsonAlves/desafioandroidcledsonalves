@@ -6,14 +6,22 @@ on:
     - labeled
     
 jobs:
-  ktlint:
-    name: Check Code Quality
+  angular-test-coverage:
     runs-on: ubuntu-latest
-
+    name: angular test coverage update
     steps:
-      - name: Clone PR
+      - name: Checkout
         uses: actions/checkout@v2
+
+      - name: Run Jasmine tests
+        run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
+
+      - name: Coverage report
+        uses: eleboys/test-coverage-report-action@v1.0.2
+        id: report
         with:
-          fetch-depth: 1
-      - name: Run Ktlint
-        uses: lucasnlm/ktlint-action@master
+          token: ${{ secrets.GITHUB_TOKEN }}
+          path: coverage/coverage-summary.json
+          title: Karma Test Coverage
+
+      - name: Print the output summary
