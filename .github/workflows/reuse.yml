@@ -2,6 +2,8 @@ name: Measure coverage
 
 on:
   pull_request:
+   types:
+    -labeled
 
 jobs:
   build:
@@ -11,7 +13,7 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
-          java-version: 11
+          java-version: 1.8
       - name: Set up Gradle
         uses: gradle/gradle-build-action@v2
       - name: Generate kover coverage report
