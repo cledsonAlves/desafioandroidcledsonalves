@@ -11,7 +11,7 @@ jobs:
       - name: Run codacy-coverage-reporter
         uses: codacy/codacy-coverage-reporter-action@master
         with:
-          --project-token: "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"
+          #project-token: "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"
           # or
           #api-token: "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"
           coverage-reports: ./cobertura.xml
