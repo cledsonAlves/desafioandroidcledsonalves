@@ -14,4 +14,4 @@ jobs:
           --project-token: "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"
           # or
           #api-token: "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"
-          coverage-reports: cobertura.xml
+          coverage-reports: ./cobertura.xml
