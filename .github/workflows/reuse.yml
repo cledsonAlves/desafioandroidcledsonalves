@@ -1,5 +1,6 @@
 name: codacy-coverage-reporter
 
+
 on: ["push"]
 
 jobs:
@@ -7,11 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     name: codacy-coverage-reporter
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@master
       - name: Run codacy-coverage-reporter
         uses: codacy/codacy-coverage-reporter-action@master
         with:
-          #project-token: "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"
-          # or
-          api-token: "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"
-          #coverage-reports: ./cobertura.xml
+          project-token: ${{ secrets.GITHUB_TOKEN }}
