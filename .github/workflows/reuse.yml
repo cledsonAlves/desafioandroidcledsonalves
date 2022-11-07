@@ -1,20 +1,20 @@
-name: Reusable workflow example
+name: codacy-coverage-reporter
 
-on:
-  workflow_call:
-    inputs:
-      config-path:
-        required: true
-        type: string
-    secrets:
-      token:
-        required: true
+on: 
+ pull_request:
+  types:
+   -labeled
 
 jobs:
-  triage:
+  codacy-coverage-reporter:
     runs-on: ubuntu-latest
+    name: codacy-coverage-reporter
     steps:
-    - uses: actions/labeler@v4
-      with:
-        repo-token: ${{ secrets.token }}
-        configuration-path: ${{ inputs.config-path }}
+      - uses: actions/checkout@v2
+      - name: Run codacy-coverage-reporter
+        uses: codacy/codacy-coverage-reporter-action@v1
+        with:
+          project-token: ${{ secrets.GITHUB_TOKEN }}
+          # or
+          # api-token: ${{ secrets.CODACY_API_TOKEN }}
+          coverage-reports: cobertura.xml
