@@ -11,7 +11,7 @@ jobs:
       with:
         api-token: 'AgAAAflAju0sQbMGX1TwiiD0WPxi316mDTfx+7MncwRSVfNVZgOFy05mC+3RUwZvoQdOjAlUZxooq8CONj9YWWvR5z0qTezgq/f8yAJOdpGfxA0Ld4BdWJ13D1xnVG09isleM3iS6FXWb9docHJyu00z1J8oujGqu2BofQk14MkMRMQ3nWfA8WesbSSWhJ0i7AHe'
         app: app-debug.apk
-        test: app-debug.apk
+        test: app-debug-test.apk
         outputs-dir: build/test-results
     - name: Publish test report
       uses: mikepenz/action-junit-report@v2
