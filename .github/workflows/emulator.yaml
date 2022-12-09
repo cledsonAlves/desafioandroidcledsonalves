@@ -6,6 +6,9 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3
+        
+      - name: Change wrapper permissions
+        run: chmod +x ./gradlew
 
       - name: run tests
         uses: reactivecircus/android-emulator-runner@v2
