@@ -3,14 +3,14 @@ on: push
 jobs:
   run-tests:
     runs-on: ubuntu-20.04
-  steps:
+    steps:
     - uses: actions/checkout@v2
     - name: Build app
       run: ./gradlew assembleDebug assembleAndroidTest
     - name: Run tests
       uses: emulator-wtf/run-tests@master
       with:
-        api-token: ${{ secrets.GITHUB_TOKEN }}
+        api-token: 'AgAAAflAju0sQbMGX1TwiiD0WPxi316mDTfx+7MncwRSVfNVZgOFy05mC+3RUwZvoQdOjAlUZxooq8CONj9YWWvR5z0qTezgq/f8yAJOdpGfxA0Ld4BdWJ13D1xnVG09isleM3iS6FXWb9docHJyu00z1J8oujGqu2BofQk14MkMRMQ3nWfA8WesbSSWhJ0i7AHe'
         app: app/build/outputs/apk/debug/app-debug.apk
         test: app/build/outputs/apk/androidTest/app-debug-androidTest.apk
         outputs-dir: build/test-results
