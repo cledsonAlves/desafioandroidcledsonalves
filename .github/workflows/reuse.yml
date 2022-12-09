@@ -8,7 +8,7 @@ jobs:
   collect_coverage:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: stevenleadbeater/kotlin-kover-action@v1.0.0
         id: kover-tests
         with:
