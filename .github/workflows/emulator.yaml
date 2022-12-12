@@ -16,4 +16,4 @@ jobs:
           api-level: 29
           ndk: 21.0.6113669
           cmake: 3.10.2.4988404
-          script: ./gradlew connectedDebugAndroidTest
+          script: echo "Generated AVD snapshot for caching."
