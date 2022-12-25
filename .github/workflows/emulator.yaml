@@ -1,5 +1,12 @@
 name: Run tests Master
-on: workflow_dispatch
+on: 
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        required: false
+        default: 'warning'
+      
+ 
 jobs:
   test:
     runs-on: macos-latest
