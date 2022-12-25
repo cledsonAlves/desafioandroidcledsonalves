@@ -3,7 +3,7 @@ on:
     inputs:
       logLevel:
         description: 'Log level'     
-        required: true
+        required: false
         default: 'warning'
       tags:
         description: 'Test scenario tags'
@@ -13,5 +13,5 @@ jobs:
         runs-on: ubuntu-latest
         steps:
                - run: |
-                  echo "Log level: ${{ github.event.inputs.logLevel }}"
-                  echo "Tags: ${{ github.event.inputs.tags }}"      
+                  echo "Log level: "
+                  echo "Tags: "      
