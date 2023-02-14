@@ -13,11 +13,13 @@ jobs:
         uses: actions/checkout@v2
         
       - name: Microsoft Teams Notifications DC
-        uses: dchourasia/ms-teams-notification@1.0
+        uses: chrisdleech-pol/github-action-notify-teams@<version>
         if: always()
         with:
-         github-token: "${{ secrets.GITHUB_TOKEN }}"
-         webhook-uri: https://everisgroup.webhook.office.com/webhookb2/10b66cd3-92e9-44e8-a11f-2199fb230dba@3048dc87-43f0-4100-9acb-ae1971c79395/IncomingWebhook/1512cac7a1a847cfa1d8b82c2a9ff08c/c2f8c456-f9f1-47ce-886f-1230324b6677
+         TEAMS_URI: https://everisgroup.webhook.office.com/webhookb2/10b66cd3-92e9-44e8-a11f-2199fb230dba@3048dc87-43f0-4100-9acb-ae1971c79395/IncomingWebhook/1512cac7a1a847cfa1d8b82c2a9ff08c/c2f8c456-f9f1-47ce-886f-1230324b6677
+         TEAMS_MSG_TITLE: "${{ github.repository }}: ${{ github.workflow }} (${{ github.job }})"
+         TEAMS_MSG_SUMMARY: "Hurray! I am the notification which was succesfully sent"
+         TEAMS_MSG_TYPE: "success"
     
 
       
