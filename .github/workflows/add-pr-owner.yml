@@ -15,7 +15,7 @@ jobs:
       - name: Microsoft Teams Notifications DC
         uses: dragos-cojocari/ms-teams-notification@v1.0.2
         with:
-         github-token: ${{ secrets.GITHIB_TOKEN }} 
+         github-token: "${{ secrets.GITHUB_TOKEN }}"
          ms-teams-webhook-uri: https://everisgroup.webhook.office.com/webhookb2/10b66cd3-92e9-44e8-a11f-2199fb230dba@3048dc87-43f0-4100-9acb-ae1971c79395/IncomingWebhook/71cab55019684b01bf7715bda9b2283b/c2f8c456-f9f1-47ce-886f-1230324b6677
          notification-summary: Your custom notification message 
          notification-color: 17a2b8
