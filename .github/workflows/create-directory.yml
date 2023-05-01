@@ -18,10 +18,10 @@ jobs:
           
       - name: Lint Code Base
         uses: blablacar/action-config-blanks@master
-        env:
+        with:
           source: '{"a/b.txt":"a\nb","c/d.yml":{"a":{"b":"text"}},".tmp/":null}'
          
-      - name: 
+      - name: commit & push
         run: |
           git status
           git add .
