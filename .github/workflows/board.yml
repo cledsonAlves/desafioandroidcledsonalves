@@ -1,20 +1,15 @@
-name: Label PR
-on:
-  pull_request:
-    types: [opened, reopened, synchronize]
-  pull_request_review:
-    types: [submitted]
+name: Push on commit
+
+on: [push]
 
 jobs:
-  labeler_job:
+  build:
+
     runs-on: ubuntu-latest
-    name: Handle pull request labels
+
     steps:
-    - name: Pull request labeler
-      id: labeler
-      uses: rihurla/SimpleLabeler@v1.1
-      with:
-        repo-token: "${{ secrets.GITHUB_TOKEN }}"
-        label-for-review: 'Ready for review'
-        label-for-approved: 'Approved'
-        number-of-approvals: 1
+    - name: Send Push Notification
+      uses: techulus/push-github-action@1.0.0
+      env:
+        API_KEY: b5373e57-3ff5-4307-99bc-500a3b881987
+        MESSAGE: "There is a new commit!"
