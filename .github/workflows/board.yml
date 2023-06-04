@@ -12,4 +12,4 @@ jobs:
       uses: techulus/push-github-action@1.0.0
       env:
         API_KEY: b5373e57-3ff5-4307-99bc-500a3b881987
-        MESSAGE: "There is a new commit!"
+        MESSAGE: "Build passou com sucesso!"
