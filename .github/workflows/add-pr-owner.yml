@@ -1,7 +1,7 @@
 name: dependabot validate 3
 
 on:
-  pull_request:
+  push:
     paths:
       - '.github/dependabot.yml'
       - '.github/workflows/dependabot-validate.yml'
