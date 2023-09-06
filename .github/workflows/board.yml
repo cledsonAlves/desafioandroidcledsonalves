@@ -1,15 +1,19 @@
-name: Push on commit
+name: dependabot validate
 
-on: [push]
-
+on:
+  pull_request:
+    paths:
+      - '.github/dependabot.yml'
+      - '.github/workflows/dependabot-validate.yml'
 jobs:
-  build:
-
+  validate:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Send Push Notification
-      uses: techulus/push-github-action@1.0.0
-      env:
-        API_KEY: b5373e57-3ff5-4307-99bc-500a3b881987
-        MESSAGE: "Build passou com sucesso!"
+      - uses: actions/checkout@v3
+      - uses: marocchino/validate-dependabot@v2
+        id: validate
+      - uses: marocchino/sticky-pull-request-comment@v2
+        if: always()
+        with:
+          header: validate-dependabot
+          message: ${{ steps.validate.outputs.markdown }}
