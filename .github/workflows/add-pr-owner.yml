@@ -1,21 +1,22 @@
-name: Dependabot
+name: dependabot validate
 
 on:
- push:
-
+  push:
+    paths:
+      - '.github/dependabot.yml'
+      - '.github/workflows/dependabot-validate.yml'
 jobs:
-  dependabot:
+  validate:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-
-      - name: Run Dependabot
-        uses: dependabot/dependabot-action@v3 # Use a ação oficial do Dependabot
+      - uses: actions/checkout@v3
+      - uses: marocchino/validate-dependabot@v2
+        id: validate
+      - uses: marocchino/sticky-pull-request-comment@v2
+        if: always()
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          directory: "/" 
-    
+          header: validate-dependabot
+          message: ${{ steps.validate.outputs.markdown }}
 
       
         
