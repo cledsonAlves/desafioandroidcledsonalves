@@ -1,7 +1,7 @@
-name: dependabot validate
+name: dependabot validate 3
 
 on:
-  push:
+  pull_request:
     paths:
       - '.github/dependabot.yml'
       - '.github/workflows/dependabot-validate.yml'
@@ -17,6 +17,5 @@ jobs:
         with:
           header: validate-dependabot
           message: ${{ steps.validate.outputs.markdown }}
-
       
         
