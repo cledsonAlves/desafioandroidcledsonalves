@@ -1,0 +1,30 @@
+name: Directory
+
+
+on:
+  push:
+
+  pull_request:
+    
+jobs:
+  build:
+    name: Lint Code Base
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          
+      - name: Lint Code Base
+        uses: blablacar/action-config-blanks@master
+        with:
+          source: '{"a/b.txt":"a\nb","c/d.yml":{"a":{"b":"text"}},".tmp/":null}'
+         
+      - name: commit & push
+        run: |
+          git status
+          git add .
+          git  commit -m "update"
+          git push
+ 

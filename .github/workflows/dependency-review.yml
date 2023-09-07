@@ -1,6 +1,5 @@
 on:
-  schedule:
-  - cron:  'eee*/5 * * * *'
+ push:
  
  
 name: Issue opened

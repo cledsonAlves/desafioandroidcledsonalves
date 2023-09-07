@@ -1,28 +1,17 @@
-name: Add PR Owner
+name: dependabot validate 3
 
 on:
-  pull_request:
-    types:
-    - labeled
-    
+  push:
+    paths:
+      - '.github/dependabot.yml'
+      - '.github/workflows/dependabot-validate.yml'
 jobs:
-  angular-test-coverage:
+  validate:
     runs-on: ubuntu-latest
-    name: angular test coverage update
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
 
-      - name: Run Jasmine tests
-        run: npm run test -- --no-watch --no-progress --browsers=ChromeHeadlessCI
-
-      - name: Coverage report
-        uses: eleboys/test-coverage-report-action@v1.0.2
-        id: report
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          path: coverage/coverage-summary.json
-          title: Karma Test Coverage
-
-      - name: Print the output summary
-        run: echo "Report coverage json ${{ steps.report.outputs.summary }}"
+          header: validate-dependabot
+          message: ${{ steps.validate.outputs.markdown }}
+      
+        

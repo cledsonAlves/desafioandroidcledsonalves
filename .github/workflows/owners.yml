@@ -1,0 +1,19 @@
+name: Informações da Action
+
+on:
+  push:
+
+
+jobs:
+  action_info:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v2
+
+      - name: Mostrar informações da Action
+        run: |
+          echo "Commit: ${{ github.sha }}"
+          echo "Repositório: ${{ github.repository }}"
+          echo "Proprietário: ${{ github.repository_owner }}"

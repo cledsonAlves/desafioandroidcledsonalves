@@ -1,20 +1,19 @@
-name: Label PR
+name: dependabot validate
+
 on:
   pull_request:
-    types: [opened, reopened, synchronize]
-  pull_request_review:
-    types: [submitted]
-
+    paths:
+      - '.github/dependabot.yml'
+      - '.github/workflows/dependabot-validate.yml'
 jobs:
-  labeler_job:
+  validate:
     runs-on: ubuntu-latest
-    name: Handle pull request labels
     steps:
-    - name: Pull request labeler
-      id: labeler
-      uses: rihurla/SimpleLabeler@v1.1
-      with:
-        repo-token: "${{ secrets.GITHUB_TOKEN }}"
-        label-for-review: 'Ready for review'
-        label-for-approved: 'Approved'
-        number-of-approvals: 1
+      - uses: actions/checkout@v3
+      - uses: marocchino/validate-dependabot@v2
+        id: validate
+      - uses: marocchino/sticky-pull-request-comment@v2
+        if: always()
+        with:
+          header: validate-dependabot
+          message: ${{ steps.validate.outputs.markdown }}

@@ -1,23 +1,26 @@
-name: Run tests
-on: push
+name: Run tests Master
+on: 
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        required: false
+        default: 'warning'
+      
+ 
 jobs:
-  run-tests:
-    runs-on: ubuntu-20.04
+  test:
+    runs-on: macos-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Change wrapper permissions
-      run: chmod +x ./gradlew
-    - name: Build app
-      run: ./gradlew assembleDebug assembleAndroidTest
-    - name: Run tests
-      uses: emulator-wtf/run-tests@master
-      with:
-        api-token: 'AgAAAflAju0sQbMGX1TwiiD0WPxi316mDTfx+7MncwRSVfNVZgOFy05mC+3RUwZvoQdOjAlUZxooq8CONj9YWWvR5z0qTezgq/f8yAJOdpGfxA0Ld4BdWJ13D1xnVG09isleM3iS6FXWb9docHJyu00z1J8oujGqu2BofQk14MkMRMQ3nWfA8WesbSSWhJ0i7AHe'
-        app: app/build/outputs/apk/debug/app-debug.apk
-        test: app/build/outputs/apk/androidTest/app-debug-androidTest.apk
-        outputs-dir: build/test-results
-    - name: Publish test report
-      uses: mikepenz/action-junit-report@v2
-      if: always() # always run even if the tests fail
-      with:
-        report_paths: 'build/test-results/**/*.xml'
+
+      - name: checkout
+        uses: actions/checkout@v3
+        
+      - name: Change wrapper permissions
+        run: chmod +x ./gradlew
+
+      - name: run tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          ndk: 21.0.6113669
+          cmake: 3.10.2.4988404
