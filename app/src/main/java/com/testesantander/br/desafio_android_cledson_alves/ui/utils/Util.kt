@@ -23,7 +23,7 @@ import java.util.function.ToDoubleFunction
 
 object Util {
 
-    // valida conexão internet
+
     @RequiresApi(api = Build.VERSION_CODES.N)
     fun isNetwork(context: Context): Boolean{
         val connection = context.getSystemService(Context.CONNECTIVITY_SERVICE)
@@ -53,7 +53,7 @@ object Util {
 
     }
 
-    // retorna o maior valor de uma lista
+   
     @RequiresApi(api = Build.VERSION_CODES.N)
     fun getMagazinePrice(lista: java.util.ArrayList<Prices>): String? {
         var price = lista.stream()
@@ -63,7 +63,7 @@ object Util {
         return DecimalFormat.getCurrencyInstance().format(price)
     }
 
-    //Adiciona o fragment no layout
+    
     fun AppCompatActivity.addFragments(@IdRes layoutId: Int, fragment: Fragment){
         fragment.arguments = intent.extras
         val ft = supportFragmentManager.beginTransaction()
